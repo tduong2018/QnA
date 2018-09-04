@@ -1,30 +1,62 @@
-<ng-template #content let-modal>
+<ng-template #newQuestion let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <!---->
+    <h4 class="modal-title" id="modal-basic-title">New Question</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form [formGroup]="form" #f="ngForm">
+
       <div class="form-group">
-        <label for="dateOfBirth">Date of birth</label>
-        <div class="input-group">
-          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        <label for="dateOfBirth">Danh mục</label>
+        <div ngbDropdown>
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Chọn Danh Mục</button>
+          <div ngbDropdownMenu>
+            <button class="dropdown-item">None</button>
           </div>
         </div>
       </div>
+
+      <!--Title-->
+      <div class="form-group">
+        <label for="questionTitle">
+          Title
+          <span *ngIf="questionTitle.touched && !questionTitle.valid" class="text-danger">
+            <span *ngIf="questionTitle.errors.required">
+              can't null
+            </span>
+          </span>
+        </label>
+        <div class="input-group">
+          <input formControlName="questionTitle" id="questionTitle" class="form-control" placeholder="@Your Title" />
+        </div>
+      </div>
+
+      <!--Content-->
+      <div class="form-group">
+        <label for="questionContent">
+          Question
+          <span *ngIf="questionContent.touched && questionContent.invalid" class="text-danger">
+            <span *ngIf="questionContent.errors.required">
+              can't null
+            </span>
+            <span *ngIf="questionContent.errors.minlength">
+              can't less than {{questionContent.errors.minlength.requiredLength}}
+            </span>
+          </span>
+        </label>
+        <div class="input-group">
+          <textarea formControlName="questionContent" type="are" id="questionContent" rows=3 class="form-control" placeholder="@Your Question"></textarea>
+        </div>
+      </div>
+
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="saveSubmit(f)">Save</button>
   </div>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
-
-<hr>
-
-<pre>{{closeResult}}</pre>
+<button class="btn btn-lg btn-outline-primary" (click)="open(newQuestion)">New Question</button>

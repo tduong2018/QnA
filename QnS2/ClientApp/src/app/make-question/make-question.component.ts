@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-make-question',
@@ -7,30 +8,43 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./make-question.component.css']
 })
 export class MakeQuestionComponent implements OnInit {
-  
-  closeResult: string;
+  public modal;
+  public ObjectQuestion;
+
+  public form = new FormGroup({
+    questionTitle: new FormControl('',
+    [
+      Validators.required
+    ]),
+    questionContent: new FormControl('',
+    [
+      Validators.required,
+      Validators.minLength(10)
+    ]),
+  });
 
   constructor(private modalService: NgbModal) { }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  public open(newQuestion) {
+    this.modal = this.modalService.open(newQuestion);
   }
 
   ngOnInit() {
   }
 
+  public saveSubmit(ObjectQuestion){
+    
+    this.ObjectQuestion = ObjectQuestion.value;
+
+    this.modal.close();
+    
+  }
+
+  public get questionTitle(){
+    return this.form.get('questionTitle');
+  }
+
+  public get questionContent(){
+    return this.form.get('questionContent');
+  }
 }
