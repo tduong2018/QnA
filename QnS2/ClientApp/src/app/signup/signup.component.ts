@@ -3,6 +3,8 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { UserRegistration } from '../Models/user.registration.interface';
+import { AppError } from '../common/app-error';
+import { BadInput } from '../common/bad-input';
 
 @Component({
   selector: 'app-signup',
@@ -31,7 +33,12 @@ export class SignupComponent implements OnInit {
               this.router.navigate(['/login'], { queryParams: { brandNew: true, email: value.email } });
             }
           },
-          errors => this.errors = errors);
+          (error: AppError) => {
+            if (error instanceof BadInput) { 
+              this.errors = error.originalError;
+            }
+            else throw error;
+          });
     }
   }
 }

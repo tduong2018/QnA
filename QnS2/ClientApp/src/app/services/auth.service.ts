@@ -63,11 +63,12 @@ export class AuthService {
 
   private HandleError(error: Response) {
     var modelStateErrors: string = '';
-    var serverError = error.json();
+    var serverError = error["error"];
     console.log(serverError);
     for (var key in serverError) {
       if (serverError[key])
         modelStateErrors += serverError[key] + '\n';
+      console.log(modelStateErrors);
     }
     if (error.status == 400)
       return throwError(new BadInput(modelStateErrors)); //createPost
