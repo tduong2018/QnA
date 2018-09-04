@@ -11,9 +11,9 @@ using QnS2.Data;
 using Microsoft.AspNetCore.Http;
 using QnS2.Helpers;
 
-namespace QMS.WebUI.Controllers
+namespace QnS2.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Route("api/[controller]")]
     public class RoleController : Controller
     {
         private readonly ClaimsPrincipal _caller;
@@ -26,7 +26,9 @@ namespace QMS.WebUI.Controllers
             _roleManager = roleManager;
             _appDbContext = appDbContext;
         }
+
         // GET: Role
+        // GET api/Role
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -34,12 +36,13 @@ namespace QMS.WebUI.Controllers
             return new OkObjectResult(roles);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Create([Required]string name)
+        // POST api/role/create
+        [HttpPost("create")]
+        public async Task<ActionResult> Create([FromBody]string name)
         {
             if (ModelState.IsValid)
             {
-                IdentityResult result = await _roleManager.CreateAsync(new AppRole(name));
+                var result = await _roleManager.CreateAsync(new AppRole(name));
                 if (result.Succeeded)
                 {
                     return new OkObjectResult("Role created");
@@ -49,16 +52,16 @@ namespace QMS.WebUI.Controllers
                     return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
                 }
             }
-            return View(name);
+            return BadRequest(ModelState);
         }
 
-        [HttpPost]
+        [HttpPost("delete")]
         public async Task<ActionResult> Delete(string id)
         {
             AppRole role = await _roleManager.FindByIdAsync(id);
             if (role != null)
             {
-                IdentityResult result = await _roleManager.DeleteAsync(role);
+                var result = await _roleManager.DeleteAsync(role);
                 if (result.Succeeded)
                 {
                     return new OkObjectResult("Role deleted");

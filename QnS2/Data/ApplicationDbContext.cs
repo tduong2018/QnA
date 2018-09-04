@@ -18,7 +18,8 @@ namespace QnS2.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<AppUser>().ToTable("Users").Property(p => p.Id).HasColumnName("Id");
-            modelBuilder.Entity<IdentityRole>().ToTable("Roles").Property(r => r.Id).HasColumnName("Id");
+            modelBuilder.Entity<AppRole>().ToTable("Roles");
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
             modelBuilder.Entity<Question>()
                 .HasMany(e => e.Answers)

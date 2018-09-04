@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace QnS2.Models.Entities
@@ -13,7 +14,6 @@ namespace QnS2.Models.Entities
         public AppRole(string roleName) : base(roleName)
         {
         }
-
         public static implicit operator AppRole(string v)
         {
             throw new NotImplementedException();
