@@ -1,5 +1,5 @@
+import { ConfigService } from './utils/config.service';
 
-import { OrderService } from './services/order.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './services/auth.service';
@@ -56,11 +56,10 @@ export function tokenGetter() {
     })
   ],
   providers: [
-    OrderService,
-
     AuthService,
     AuthGuard,
     AdminAuthGuard,
+    ConfigService,
     {provide:ErrorHandler, useClass:AppErrorHandler}
   ],
   bootstrap: [AppComponent]
