@@ -10,20 +10,22 @@ using System.Security.Claims;
 using QnS2.Data;
 using Microsoft.AspNetCore.Http;
 using QnS2.Helpers;
+using Microsoft.AspNetCore.Authorization;
+using System.Text;
+using QnS2.ViewModels;
 
 namespace QnS2.Controllers
 {
+    [Authorize(Roles = Constants.Strings.JwtClaims.Admin)]
     [Route("api/[controller]")]
     public class RoleController : Controller
     {
         private readonly ClaimsPrincipal _caller;
         private readonly ApplicationDbContext _appDbContext;
-        private readonly RoleManager<AppRole> _roleManager;
 
-        public RoleController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, ApplicationDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
+        public RoleController(UserManager<AppUser> userManager, ApplicationDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
         {
             _caller = httpContextAccessor.HttpContext.User;
-            _roleManager = roleManager;
             _appDbContext = appDbContext;
         }
 
@@ -32,50 +34,50 @@ namespace QnS2.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var roles = _roleManager.Roles.ToList();
+            var roles = _appDbContext.Roles.ToList();
             return new OkObjectResult(roles);
         }
 
         // POST api/role/create
         [HttpPost("create")]
-        public async Task<ActionResult> Create([FromBody]string name)
+        public async Task<ActionResult> Create([FromBody]RoleViewModel role)
         {
             if (ModelState.IsValid)
             {
-                var result = await _roleManager.CreateAsync(new AppRole(name));
-                if (result.Succeeded)
+                IdentityRole _role = new IdentityRole();
+                _role.Id = Convert.ToBase64String(Encoding.ASCII.GetBytes(role.RoleName));
+                _role.Name = role.RoleName;
+                 _appDbContext.Roles.Add(_role);
+                var result = await _appDbContext.SaveChangesAsync();
+                return new OkObjectResult(new
                 {
-                    return new OkObjectResult("Role created");
-                }
-                else
-                {
-                    return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
-                }
+                    Message = "Created!",
+                });
             }
             return BadRequest(ModelState);
         }
 
-        [HttpPost("delete")]
-        public async Task<ActionResult> Delete(string id)
-        {
-            AppRole role = await _roleManager.FindByIdAsync(id);
-            if (role != null)
-            {
-                var result = await _roleManager.DeleteAsync(role);
-                if (result.Succeeded)
-                {
-                    return new OkObjectResult("Role deleted");
-                }
-                else
-                {
-                    return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
-                }
-            }
-            else
-            {
-                return View("Error", new string[] { "role not found" });
-            }
-        }
+        //[HttpPost("delete")]
+        //public async Task<ActionResult> Delete(string id)
+        //{
+        //    AppRole role = await _roleManager.FindByIdAsync(id);
+        //    if (role != null)
+        //    {
+        //        var result = await _roleManager.DeleteAsync(role);
+        //        if (result.Succeeded)
+        //        {
+        //            return new OkObjectResult("Role deleted");
+        //        }
+        //        else
+        //        {
+        //            return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return View("Error", new string[] { "role not found" });
+        //    }
+        //}
 
         //public async Task<ActionResult> Edit(string id)
         //{
