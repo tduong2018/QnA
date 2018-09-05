@@ -25,6 +25,7 @@ import { SignupComponent } from './signup/signup.component';
 import { CardQuestionComponent } from './card-question/card-question.component';
 import { RoleMangageComponent } from './admin/rolemangage/role.mangage.component';
 import { RoleService } from './services/role.service';
+import { RoleComponent } from './admin/role/role.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -43,7 +44,8 @@ export function tokenGetter() {
     QuestionerComponent,
     SignupComponent,
     CardQuestionComponent,
-    RoleMangageComponent
+    RoleMangageComponent,
+    RoleComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,10 @@ export function tokenGetter() {
       },
       { 
         path: 'admin/role', component: RoleMangageComponent, 
+        canActivate: [AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/roles/new', component: RoleComponent, 
         canActivate: [AdminAuthGuard] 
       },
       { 

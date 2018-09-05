@@ -9,5 +9,4 @@ export class RoleService extends DataService{
     constructor(http: HttpClient) {
         super('role', http);
     }
-
 }

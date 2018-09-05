@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BadInput } from './../common/bad-input';
 import { AppError } from './../common/app-error';
 import { catchError, map , retry } from 'rxjs/operators';
@@ -10,6 +10,8 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class DataService {
   private baseUrl : string = ''
+  headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+
   constructor(private url:string,private http: HttpClient) { 
     this.baseUrl = environment.baseUrl;
   }
@@ -22,7 +24,7 @@ export class DataService {
   }
 
   create(resource) {
-    return this.http.post(this.url,JSON.stringify(resource))
+    return this.http.post(this.baseUrl+'/'+this.url+'/'+'create',JSON.stringify(resource), { headers: this.headers })
       .pipe(
         retry(3),
         map(response => response),
