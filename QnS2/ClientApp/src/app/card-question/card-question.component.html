@@ -4,28 +4,31 @@
       <img src='https://via.placeholder.com/150/771796' />
       <span class="ml-2">Trần Dưỡng</span>
       <span class="text-info ml-3 small">(just now)</span>
-      <div ngbDropdown class="float-right">
-        <a class="btn" id="dropdownBasic1">...</a>
-        <div ngbDropdownMenu style="position: absolute">
-          <button class="dropdown-item">None</button>
+      <div class="float-right">
+        <div ngbDropdown>
+          <span class="btn" id="dropdownBasic1" ngbDropdownToggle>
+            <i class="material-icons">...</i>
+          </span>
+          <div ngbDropdownMenu style="position: absolute">
+            <button class="dropdown-item">None</button>
+          </div>
         </div>
       </div>
       <div class="ml-5">
         <span>why sky is blue?</span>
       </div>
+      <div class="small text-right mt-3">
+        <a (click)="isCollapsed = !isCollapsed" class="btn"><span>(22)</span>Comment</a>
+      </div>
     </div>
   </div>
-  <div class="card-body">
-    <div class="float-right small btn">
-      <a (click)="isCollapsed = !isCollapsed"><span>(22)</span>Comment</a>
-    </div>
-  </div>
-</div>
-
-<div id="collapseExample" [ngbCollapse]="isCollapsed">
-  <div class="card">
-    <div class="card-body">
-      You can collapse this card by clicking Toggle
+  <div class="card-body" [ngbCollapse]="isCollapsed">
+    <!--commet collapsed-->
+    <div id="collapseExample">
+      <div class="form-group form-inline">
+          <img src='https://via.placeholder.com/150/771796' />
+          <textarea class="form-control ml-1" rows=1 style="border-radius: 25px; width: 90%" type="text" name="" id=""></textarea>
+      </div>
     </div>
   </div>
 </div>
