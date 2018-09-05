@@ -10,14 +10,22 @@
           <button class="dropdown-item">None</button>
         </div>
       </div>
+      <div class="ml-5">
+        <span>why sky is blue?</span>
+      </div>
     </div>
   </div>
-  <div class="card-body bg-light">
-    <div>
-      <span>why sky is blue?</span>
+  <div class="card-body">
+    <div class="float-right small btn">
+      <a (click)="isCollapsed = !isCollapsed"><span>(22)</span>Comment</a>
     </div>
-    <div class="float-right small">
-      <a href="#"><span>(22)</span>Comment</a>
+  </div>
+</div>
+
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      You can collapse this card by clicking Toggle
     </div>
   </div>
 </div>
