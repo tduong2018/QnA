@@ -25,11 +25,12 @@ export class SignupComponent implements OnInit {
     this.isRequesting = true;
     this.errors = '';
     if (valid) {
-      this.authService.register(value.email, value.password, value.firstName, value.lastName, value.location).pipe(
+      this.authService.register(value).pipe(
         finalize(() => this.isRequesting = false))
         .subscribe(
           result => {
             if (result) {
+              alert("Success");
               this.router.navigate(['/login'], { queryParams: { brandNew: true, email: value.email } });
             }
           },

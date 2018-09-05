@@ -1,3 +1,4 @@
+import { UserRegistration } from './../Models/user.registration.interface';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -53,11 +54,11 @@ export class AuthService {
   }
 
 
-  register(email: string, password: string, firstName: string, lastName: string, location: string) {
-    let body = JSON.stringify({ email, password, firstName, lastName, location });
-    return this.http.post(this.baseUrl+"/accounts", body, { headers: this.headers }).
+  register(userRegistration) {
+    let body = JSON.stringify(userRegistration);
+    return this.http.post(this.baseUrl+'/accounts', body, { headers: this.headers }).
       pipe(
-        map(res => true),
+        map(response => true),
         catchError(this.HandleError));
   }
 
@@ -68,7 +69,6 @@ export class AuthService {
     for (var key in serverError) {
       if (serverError[key])
         modelStateErrors += serverError[key] + '\n';
-      console.log(modelStateErrors);
     }
     if (error.status == 400)
       return throwError(new BadInput(modelStateErrors)); //createPost
