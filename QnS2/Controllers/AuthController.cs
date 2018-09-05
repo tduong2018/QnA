@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 
-namespace QnA.Controllers
+namespace QnS2.Controllers
 {
     [Route("api/[controller]")]
     public class AuthController : Controller

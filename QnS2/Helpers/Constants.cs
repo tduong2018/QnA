@@ -18,7 +18,7 @@ namespace QnS2.Helpers
             public static class JwtClaims
             {
                 public const string ApiAccess = "api_access";
-                public const string Admin = "admin";
+                public const string Admin = "Admin";
                 public const string Question = "question";
             }
         }

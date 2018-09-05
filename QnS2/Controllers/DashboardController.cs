@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace AngularASPNETCore2WebApiAuth.Controllers
+namespace QnS2.Controllers
 {
     [Authorize(Policy = "ApiUser")]
     [Route("api/[controller]/[action]")]
@@ -29,6 +29,7 @@ namespace AngularASPNETCore2WebApiAuth.Controllers
 
         // GET api/dashboard/home
         [HttpGet]
+        //[Authorize(Roles = Constants.Strings.JwtClaims.Admin)]
         public async Task<IActionResult> Home()
         {
             // retrieve the user info
@@ -46,16 +47,21 @@ namespace AngularASPNETCore2WebApiAuth.Controllers
 
 
         // GET api/dashboard/question all
-        [Authorize(Roles = Constants.Strings.JwtClaims.Question)]
-        [HttpGet]
+        //[Authorize(Roles = Constants.Strings.JwtClaims.Question)]
+        //[HttpGet]
+        //public async Task<IActionResult> Question()
+        //{
+        //    // retrieve the user info
+        //    //HttpContext.User
+        //    var userId = _caller.Claims.Single(c => c.Type == "id");
+        //    //var user = await _appDbContext.Questions.Where(c => c.IdentityId == userId.Value).ToListAsync();
+
+        //    return new OkObjectResult(user);
+        //}
+        //[HttpGet]
         public async Task<IActionResult> Question()
         {
-            // retrieve the user info
-            //HttpContext.User
-            var userId = _caller.Claims.Single(c => c.Type == "id");
-            var user = await _appDbContext.Questions.Where(c => c.UserId == userId.Value).ToListAsync();
-
-            return new OkObjectResult(user);
+            return new OkObjectResult("123");
         }
     }
 }
