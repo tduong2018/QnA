@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -23,11 +23,7 @@ export class MakeQuestionComponent implements OnInit {
     ]),
   });
 
-  constructor(private modalService: NgbModal) { }
-
-  public open(newQuestion) {
-    this.modal = this.modalService.open(newQuestion);
-  }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
@@ -36,7 +32,7 @@ export class MakeQuestionComponent implements OnInit {
     
     this.ObjectQuestion = ObjectQuestion.value;
 
-    this.modal.close();
+    this.activeModal.close();
     
   }
 

@@ -1,11 +1,15 @@
+import { QuestionerComponent } from './questioner/questioner.component';
+import { AnswerComponent } from './answer/answer.component';
+import { MakeQuestionComponent } from './make-question/make-question.component';
 import { ConfigService } from './utils/config.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, BaseRequestOptions } from '@angular/http';
 import { RouterModule } from '@angular/router'; 
 
@@ -32,6 +36,9 @@ export function tokenGetter() {
     HomeComponent,
     NotFoundComponent,
     NoAccessComponent,
+    MakeQuestionComponent,
+    AnswerComponent,
+    QuestionerComponent,
     SignupComponent
   ],
   imports: [
@@ -39,13 +46,41 @@ export function tokenGetter() {
     FormsModule,
     HttpModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGuard] },
-      { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
-      { path: 'no-access', component: NoAccessComponent },      
-      { path: '**', component:NotFoundComponent },
+      { 
+        path: '', 
+        component: HomeComponent 
+      },
+      { 
+        path: 'admin', component: AdminComponent, 
+        canActivate: [AdminAuthGuard] 
+      },
+      { 
+        path: 'login', 
+        component: LoginComponent 
+      },
+      { 
+        path: 'signup', 
+        component: SignupComponent 
+      },
+      { 
+        path: 'make-question', 
+        component: MakeQuestionComponent 
+      },
+      { 
+        path: 'answer', 
+        component: AnswerComponent 
+      },
+      { 
+        path: 'questioner', 
+        component: QuestionerComponent 
+      },      
+      { 
+        path: '**', 
+        component:NotFoundComponent
+      },
     ]),
     JwtModule.forRoot({
       config: {
