@@ -23,6 +23,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 import { AppErrorHandler } from './common/app-error-handler';
 import { SignupComponent } from './signup/signup.component';
+import { CardQuestionComponent } from './card-question/card-question.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -39,7 +40,8 @@ export function tokenGetter() {
     MakeQuestionComponent,
     AnswerComponent,
     QuestionerComponent,
-    SignupComponent
+    SignupComponent,
+    CardQuestionComponent
   ],
   imports: [
     BrowserModule,
