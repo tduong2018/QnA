@@ -1,7 +1,6 @@
 import { QuestionerComponent } from './questioner/questioner.component';
 import { AnswerComponent } from './answer/answer.component';
 import { MakeQuestionComponent } from './make-question/make-question.component';
-import { ConfigService } from './utils/config.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminAuthGuard } from './admin-auth-guard.service';
@@ -24,9 +23,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppErrorHandler } from './common/app-error-handler';
 import { SignupComponent } from './signup/signup.component';
 import { CardQuestionComponent } from './card-question/card-question.component';
+import { RoleMangageComponent } from './admin/rolemangage/role.mangage.component';
+import { RoleService } from './services/role.service';
 
 export function tokenGetter() {
-  return localStorage.getItem('access_token');
+  return localStorage.getItem('token');
 }
 
 @NgModule({
@@ -41,7 +42,8 @@ export function tokenGetter() {
     AnswerComponent,
     QuestionerComponent,
     SignupComponent,
-    CardQuestionComponent
+    CardQuestionComponent,
+    RoleMangageComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,10 @@ export function tokenGetter() {
       },
       { 
         path: 'admin', component: AdminComponent, 
+        canActivate: [AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/role', component: RoleMangageComponent, 
         canActivate: [AdminAuthGuard] 
       },
       { 
@@ -87,7 +93,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: [''],
+        whitelistedDomains: ['localhost:61759','localhost:61758'],
         blacklistedRoutes: ['']
       }
     })
@@ -96,7 +102,7 @@ export function tokenGetter() {
     AuthService,
     AuthGuard,
     AdminAuthGuard,
-    ConfigService,
+    RoleService,
     {provide:ErrorHandler, useClass:AppErrorHandler}
   ],
   bootstrap: [AppComponent]

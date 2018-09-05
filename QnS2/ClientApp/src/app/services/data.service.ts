@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BadInput } from './../common/bad-input';
 import { AppError } from './../common/app-error';
@@ -7,14 +8,14 @@ import { NotFoundError } from '../common/not-found-error';
 import { throwError } from 'rxjs';
  
 @Injectable()
-
 export class DataService {
+  private baseUrl : string = ''
   constructor(private url:string,private http: HttpClient) { 
-
+    this.baseUrl = environment.baseUrl;
   }
 
   getAll()  {
-    return this.http.get(this.url)
+    return this.http.get(this.baseUrl+'/'+this.url)
       .pipe(
         map(response => response),
         catchError(this.HandleError));
@@ -49,12 +50,18 @@ export class DataService {
       ));
   }
 
-  private HandleError(error: Response)
-  {
+  private HandleError(error: Response) {
+    var modelStateErrors: string = '';
+    var serverError = error["error"];
+    console.log(serverError);
+    for (var key in serverError) {
+      if (serverError[key])
+        modelStateErrors += serverError[key] + '\n';
+    }
     if (error.status == 400)
-      return throwError(new BadInput(error.json())); //createPost
+      return throwError(new BadInput(modelStateErrors)); //createPost
     if (error.status == 404)
-      return throwError(new NotFoundError(error.json()));
-    return throwError(new AppError(error));
+      return throwError(new NotFoundError(modelStateErrors));
+    return throwError(new AppError(modelStateErrors));
   }
 }

@@ -1,3 +1,5 @@
+import { environment } from './../../environments/environment';
+import { AdminAuthGuard } from './../admin-auth-guard.service';
 import { UserRegistration } from './../Models/user.registration.interface';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
@@ -9,7 +11,6 @@ import { Router } from '@angular/router';
 import { BadInput } from '../common/bad-input';
 import { NotFoundError } from '../common/not-found-error';
 import { AppError } from '../common/app-error';
-import { ConfigService } from '../utils/config.service';
 
 @Injectable()
 export class AuthService {
@@ -17,12 +18,12 @@ export class AuthService {
   baseUrl: string = '';
   headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
-  constructor(private http: HttpClient, public jwtHelper: JwtHelperService, private router: Router, private configService: ConfigService) {
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService, private router: Router) {
     let token = localStorage.getItem('token');
     if (token) {
       this.currentUser = jwtHelper.decodeToken(token);
     }
-    this.baseUrl = configService.getApiURI();
+    this.baseUrl = environment.baseUrl;
   }
 
   login(credentials) {

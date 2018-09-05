@@ -1,0 +1,21 @@
+<p>
+  <a routerLink="/admin/roles/new" class="btn btn-primary">New Role</a>
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Discription</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of roles">
+      <td>{{r.name}}</td>
+      <td></td>
+      <td>
+        <a>Edit</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,5 +1,6 @@
 import { AuthGuard } from './auth-guard.service';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class AdminAuthGuard extends AuthGuard {
@@ -9,7 +10,7 @@ export class AdminAuthGuard extends AuthGuard {
     if (!isAuthenticated)
       return false; 
 
-    if (this.authService.currentUser.admin)
+    if (this.authService.currentUser.roles == environment.admin)
       return true; 
 
     this.router.navigate(['/no-access']);
