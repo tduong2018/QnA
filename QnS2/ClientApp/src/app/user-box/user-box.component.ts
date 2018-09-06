@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class UserBoxComponent implements OnInit {
   public Role: string;
   
-  public RolesAccount = ["Answer","Questioner"];
+  public RolesAccount = ["Questioner", "Answer"];
   
   constructor() { }
 
@@ -16,11 +16,8 @@ export class UserBoxComponent implements OnInit {
     this.Role = this.RolesAccount[0];
   }
 
-  public answerPage(){
-    this.Role = this.RolesAccount[0];
-  }
+  public changeRole(item){
+    this.Role = item;
 
-  public questionerPage(){
-    this.Role = this.RolesAccount[1];
   }
 }

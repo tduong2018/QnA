@@ -8,8 +8,7 @@
       <span>{{Role}}</span>
     </span>
     <div ngbDropdownMenu style="position: absolute">
-      <button class="dropdown-item btn" (click)="answerPage()">Answer</button>
-      <button class="dropdown-item btn" (click)="questionerPage()">Questioner</button>
+      <button class="dropdown-item btn" *ngFor="let item of RolesAccount" (click)="changeRole(item)">{{item}}</button>
     </div>
   </div>
   <div class="form-group form-inline justify-content-center">

@@ -1,6 +1,6 @@
 
 import { AuthService } from './../services/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from './../../environments/environment';
 
 @Component({
@@ -8,7 +8,13 @@ import { environment } from './../../environments/environment';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  adminRole = environment.admin;
+export class HomeComponent implements OnInit {
+  public adminRole = environment.admin;
+  public userRoles: number;
   constructor(private authService: AuthService) { }
+
+  public ngOnInit(){
+    this.userRoles = 1;
+  }
+
 }

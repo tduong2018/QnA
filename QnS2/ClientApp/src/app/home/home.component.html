@@ -6,7 +6,13 @@
         <app-menu></app-menu>
 
         <div style="height: 82%">
-            <app-questioner></app-questioner>
+            <div *ngIf="userRoles == 1; else answerPage" style="height: 100%">
+                <app-questioner></app-questioner>
+            </div>
+
+            <ng-template #answerPage>
+                <app-answer></app-answer>
+            </ng-template>
         </div>
     </div>
     <div class="col-md-2 main-right bg-warning">
