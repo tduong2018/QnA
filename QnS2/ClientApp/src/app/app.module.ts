@@ -26,6 +26,8 @@ import { CardQuestionComponent } from './card-question/card-question.component';
 import { RoleMangageComponent } from './admin/rolemangage/role.mangage.component';
 import { RoleService } from './services/role.service';
 import { RoleComponent } from './admin/role/role.component';
+import { MenuComponent } from './menu/menu.component';
+import { UserBoxComponent } from './user-box/user-box.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -45,7 +47,9 @@ export function tokenGetter() {
     SignupComponent,
     CardQuestionComponent,
     RoleMangageComponent,
-    RoleComponent
+    RoleComponent,
+    MenuComponent,
+    UserBoxComponent
   ],
   imports: [
     BrowserModule,
