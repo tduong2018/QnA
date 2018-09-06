@@ -7,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserBoxComponent implements OnInit {
   public Role: string;
-  Role ="";
+  
   public RolesAccount = ["Answer","Questioner"];
+  
   constructor() { }
 
   ngOnInit() {
+    this.Role = this.RolesAccount[0];
   }
 
   public answerPage(){

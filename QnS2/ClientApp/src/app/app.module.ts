@@ -29,6 +29,8 @@ import { RoleService } from './services/role.service';
 import { RoleComponent } from './admin/role/role.component';
 import { UsermanageComponent } from './admin/usermanage/usermanage.component';
 import { UserroleComponent } from './admin/userrole/userrole.component';
+import { UserBoxComponent } from './user-box/user-box.component';
+import { MenuComponent } from './menu/menu.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -50,7 +52,9 @@ export function tokenGetter() {
     RoleMangageComponent,
     RoleComponent,
     UsermanageComponent,
-    UserroleComponent
+    UserroleComponent,
+    UserBoxComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
