@@ -1,0 +1,40 @@
+<p>
+  <a routerLink="/admin/users/new" class="btn btn-primary">New User</a>
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of users; let i = index;">
+      <td>{{i+1}}</td>
+      <td>{{u.firstName}}</td>
+      <td>{{u.lastName}}</td>
+      <td>{{u.email}}</td>
+      <td>
+        <div ngbDropdown>
+          <span class="btn" id="dropdownBasic1" ngbDropdownToggle>
+            ...
+          </span>
+          <div ngbDropdownMenu style="position: absolute">
+            <div *ngFor="let r of roles">
+              <button class="dropdown-item">{{r.name}}</button>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <!--        <a [routerLink]="['/admin/roles/',r.id]">Edit</a>-->
+        <button (click)="editRole()" class="btn btn-dark">Edit role</button>
+        <button (click)="delete(u.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

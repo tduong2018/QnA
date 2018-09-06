@@ -14,7 +14,8 @@
       <td>{{r.name}}</td>
       <td></td>
       <td>
-        <a>Edit</a>
+        <a  [routerLink]="['/admin/roles/',r.id]" >Edit</a>
+        <a  (click)="delete(r.id)" >Delete</a>
       </td>
     </tr>
   </tbody>

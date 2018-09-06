@@ -13,7 +13,4 @@
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" id="inputPassword" name="password" ngModel class="form-control" placeholder="Password" required>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
-  <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
-  <li *ngIf="!authService.isLoggedIn()"><a routerLink="/signup">Signup</a></li>
 </form>

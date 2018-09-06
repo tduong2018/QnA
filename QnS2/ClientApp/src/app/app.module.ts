@@ -1,3 +1,4 @@
+import { AdminUserService } from './services/admin.user.service';
 import { QuestionerComponent } from './questioner/questioner.component';
 import { AnswerComponent } from './answer/answer.component';
 import { MakeQuestionComponent } from './make-question/make-question.component';
@@ -26,8 +27,8 @@ import { CardQuestionComponent } from './card-question/card-question.component';
 import { RoleMangageComponent } from './admin/rolemangage/role.mangage.component';
 import { RoleService } from './services/role.service';
 import { RoleComponent } from './admin/role/role.component';
-import { MenuComponent } from './menu/menu.component';
-import { UserBoxComponent } from './user-box/user-box.component';
+import { UsermanageComponent } from './admin/usermanage/usermanage.component';
+import { UserroleComponent } from './admin/userrole/userrole.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -48,8 +49,8 @@ export function tokenGetter() {
     CardQuestionComponent,
     RoleMangageComponent,
     RoleComponent,
-    MenuComponent,
-    UserBoxComponent
+    UsermanageComponent,
+    UserroleComponent
   ],
   imports: [
     BrowserModule,
@@ -68,11 +69,27 @@ export function tokenGetter() {
         canActivate: [AdminAuthGuard] 
       },
       { 
-        path: 'admin/role', component: RoleMangageComponent, 
+        path: 'admin/roles', component: RoleMangageComponent, 
         canActivate: [AdminAuthGuard] 
       },
       { 
         path: 'admin/roles/new', component: RoleComponent, 
+        canActivate: [AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/roles/:id', component: RoleComponent, 
+        canActivate: [AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/users', component: UsermanageComponent, 
+        canActivate: [AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/users/new', component: RoleComponent, 
+        canActivate: [AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/users/:id', component: RoleComponent, 
         canActivate: [AdminAuthGuard] 
       },
       { 
@@ -113,8 +130,10 @@ export function tokenGetter() {
     AuthGuard,
     AdminAuthGuard,
     RoleService,
+    AdminUserService,
     {provide:ErrorHandler, useClass:AppErrorHandler}
   ],
+  entryComponents:[UserroleComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

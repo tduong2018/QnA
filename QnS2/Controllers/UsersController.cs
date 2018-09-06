@@ -18,24 +18,26 @@ namespace QnS2.Controllers
 {
     [Authorize(Roles = Constants.Strings.JwtClaims.Admin)]
     [Route("api/[controller]")]
-    public class RoleController : Controller
+    public class UsersController : Controller
     {
+        private readonly UserManager<AppUser> _userManager;
         private readonly ClaimsPrincipal _caller;
         private readonly ApplicationDbContext _appDbContext;
 
-        public RoleController(UserManager<AppUser> userManager, ApplicationDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
+        public UsersController(UserManager<AppUser> userManager, ApplicationDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
         {
+            _userManager = userManager;
             _caller = httpContextAccessor.HttpContext.User;
             _appDbContext = appDbContext;
         }
 
-        // GET: Role
-        // GET api/Roles
+        // GET: Users
+        // GET api/Users
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var roles = _appDbContext.Roles.ToList();
-            return new OkObjectResult(roles);
+            var users = _userManager.Users.ToList();
+            return new OkObjectResult(users);
         }
 
         // GET api/Roles/5
@@ -70,8 +72,14 @@ namespace QnS2.Controllers
         {
             if (ModelState.IsValid)
             {
-                _appDbContext.Roles.Remove(_appDbContext.Roles.FirstOrDefault(x => x.Id == id));
-                await _appDbContext.SaveChangesAsync();
+                // get the user to verifty
+                var userToVerify = await _userManager.FindByIdAsync(id);
+
+                if (userToVerify == null) return BadRequest(ModelState);
+                var result = await _userManager.DeleteAsync(userToVerify);
+
+                if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
+  
                 return new OkObjectResult(new
                 {
                     Message = "Deleted!",
@@ -81,16 +89,21 @@ namespace QnS2.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Edit([FromBody]RoleViewModel role)
+        public async Task<ActionResult> EditRole([FromBody]UserViewModel user)
         {
             if (ModelState.IsValid)
             {
-                _appDbContext.Roles.FirstOrDefault(x => x.Id == role.id).Name = role.RoleName;
-                await _appDbContext.SaveChangesAsync();
-                return new OkObjectResult(new
-                {
-                    Message = "Updated!",
-                });
+                //var userToVerify = await _userManager.FindByIdAsync(user.id);
+
+                //if (userToVerify == null) return BadRequest(ModelState);
+                //var result = await _userManager.SetUserNameAsync(userToVerify,user.);
+
+                //_appDbContext.Roles.FirstOrDefault(x => x.Id == role.id).Name = role.RoleName;
+                //await _appDbContext.SaveChangesAsync();
+                //return new OkObjectResult(new
+                //{
+                //    Message = "Updated!",
+                //});
             }
             return BadRequest(ModelState);
         }
