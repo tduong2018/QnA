@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,6 +30,7 @@ import { UsermanageComponent } from './admin/usermanage/usermanage.component';
 import { UserroleComponent } from './admin/userrole/userrole.component';
 import { UserBoxComponent } from './user-box/user-box.component';
 import { MenuComponent } from './menu/menu.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -42,10 +42,10 @@ export function tokenGetter() {
     LoginComponent,
     AdminComponent,
     HomeComponent,
-    NotFoundComponent,
     NoAccessComponent,
     MakeQuestionComponent,
     AnswerComponent,
+    NotfoundComponent,
     QuestionerComponent,
     SignupComponent,
     CardQuestionComponent,
@@ -118,7 +118,7 @@ export function tokenGetter() {
       },      
       { 
         path: '**', 
-        component:NotFoundComponent
+        component:NotfoundComponent
       },
     ]),
     JwtModule.forRoot({
