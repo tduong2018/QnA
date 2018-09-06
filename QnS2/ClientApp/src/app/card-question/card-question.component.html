@@ -10,7 +10,8 @@
             <i class="material-icons">...</i>
           </span>
           <div ngbDropdownMenu style="position: absolute">
-            <button class="dropdown-item">None</button>
+            <a class="dropdown-item" href="#">Update</a>
+            <a class="dropdown-item" href="#">Delete</a>
           </div>
         </div>
       </div>
@@ -25,9 +26,32 @@
   <div class="card-body" [ngbCollapse]="isCollapsed">
     <!--commet collapsed-->
     <div id="collapseExample">
-      <div class="form-group form-inline">
+
+      
+      <div>
+        <!--list comment-->
+        <ul class="nav flex-column">
+          <li class="nav-item row mb-3 alert alert-info">
+            <img src='https://via.placeholder.com/150/771796' class="bg-primary" />
+            <div class="ml-2">
+              <span class="text-info small">trần Dưỡng<br /></span>
+              <span>because you craze =)) <br /> dsadasd ádas<br />đấ</span>
+            </div>
+          </li>
+          <li class="nav-item row mb-3 alert alert-info">
+            <img src='https://via.placeholder.com/150/771796' />
+            <div class="ml-2">
+              <span class="text-info small">trần Dưỡng<br /></span>
+              <span>because it is blue :))</span>
+            </div>
+          </li>
+        </ul>
+
+        <!--to comment-->
+        <div class="row alert">
           <img src='https://via.placeholder.com/150/771796' />
-          <textarea class="form-control ml-1" rows=1 style="border-radius: 25px; width: 90%" type="text" name="" id=""></textarea>
+          <textarea class="form-control ml-2" rows=1 style="border-radius: 25px; width: 92%" type="text" name="" id=""></textarea>
+        </div>
       </div>
     </div>
   </div>

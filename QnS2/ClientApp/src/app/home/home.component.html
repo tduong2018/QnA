@@ -1,4 +1,25 @@
+<div class="row home-page">
+    <div class="col-md-2 bg-dark main-left">
+        
+    </div>
+    <div class="col-md-8 main-center">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <app-questioner></app-questioner>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-2 main-right bg-warning">
 
+    </div>
+</div>
+
+
+
+
+
+
+<!--nothing
 <h1>Home Page</h1>
 <p *ngIf="authService.isLoggedIn()">
   Welcome {{ authService.currentUser.sub }}
@@ -9,4 +30,4 @@
   <li *ngIf="!authService.isLoggedIn()"><a routerLink="/signup">Signup</a></li>
 </ul>
 
-<button *ngIf="authService.isLoggedIn()" (click)="authService.logout()">Logout</button>
+<button *ngIf="authService.isLoggedIn()" (click)="authService.logout()">Logout</button>-->
