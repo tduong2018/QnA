@@ -5,9 +5,9 @@
         {{Category}}
       </button>
       <div ngbDropdownMenu class="position-absolute">
-        <button class="dropdown-item btn" *ngFor="let item of Categorys"(click)="selectCategory(item)">
+        <span class="dropdown-item btn" *ngFor="let item of Categorys"(click)="selectCategory(item)">
           {{item}}
-        </button>
+        </span>
       </div>
     </div>
     <input type="text" class="form-control" name="search">

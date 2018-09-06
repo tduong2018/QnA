@@ -3,3 +3,8 @@
     width: 60px;
     border-radius: 50%; 
 }
+
+.dropdown-item:hover{
+    color: white;
+    background-color: rgb(103, 103, 221);
+}

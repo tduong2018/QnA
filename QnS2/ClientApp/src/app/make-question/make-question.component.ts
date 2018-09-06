@@ -10,6 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class MakeQuestionComponent implements OnInit {
   public modal;
   public ObjectQuestion;
+  public Category:string;
+  public Categorys = ["Chọn Danh Mục", "C#", "Angular", "ASP.NET MVC", "ASP.NET MVC Core"];
 
   public form = new FormGroup({
     questionTitle: new FormControl('',
@@ -26,6 +28,7 @@ export class MakeQuestionComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
+    this.Category = this.Categorys[0];
   }
 
   public saveSubmit(ObjectQuestion){
@@ -42,5 +45,9 @@ export class MakeQuestionComponent implements OnInit {
 
   public get questionContent(){
     return this.form.get('questionContent');
+  }
+
+  public selectCategory(item){
+    this.Category = item;
   }
 }

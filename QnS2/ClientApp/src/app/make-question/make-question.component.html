@@ -12,9 +12,11 @@
       <div class="form-group">
         <label for="dateOfBirth">Danh mục</label>
         <div ngbDropdown>
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Chọn Danh Mục</button>
+          <button class="btn btn-outline-primary" ngbDropdownToggle>{{Category}}</button>
           <div ngbDropdownMenu>
-            <button class="dropdown-item">None</button>
+            <button class="dropdown-item" *ngFor="let item of Categorys" (click)="selectCategory(item)">
+              {{item}}
+            </button>
           </div>
         </div>
       </div>
