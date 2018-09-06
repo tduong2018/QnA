@@ -1,3 +1,23 @@
-<p>
-  user-box works!
-</p>
+<form class="account text-center mt-4">
+  <div class="form-group">
+    <img src="https://via.placeholder.com/150/771796" alt="">
+    <p>Trần Dưỡng</p>
+  </div>
+  <div ngbDropdown class="form-group">
+    <span class="btn" id="dropdownBasic1" ngbDropdownToggle>
+      <span>{{Role}}</span>
+    </span>
+    <div ngbDropdownMenu style="position: absolute">
+      <button class="dropdown-item btn" (click)="answerPage()">Answer</button>
+      <button class="dropdown-item btn" (click)="questionerPage()">Questioner</button>
+    </div>
+  </div>
+  <div class="form-group form-inline justify-content-center">
+    <a routerLink="/login">
+      Sign Out
+    </a>
+    <i class="material-icons">
+      exit_to_app
+    </i>
+  </div>
+</form>

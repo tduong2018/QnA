@@ -6,7 +6,7 @@
       <span class="text-info ml-3 small">(just now)</span>
       <div class="float-right">
         <div ngbDropdown>
-          <span class="btn" id="dropdownBasic1" ngbDropdownToggle>
+          <span class="btn" ngbDropdownToggle placement="bottom" ngbTooltip="settings">
             <i class="material-icons">...</i>
           </span>
           <div ngbDropdownMenu style="position: absolute;">
@@ -23,35 +23,32 @@
       </div>
     </div>
   </div>
-  <div class="card-body" [ngbCollapse]="isCollapsed">
-    <!--commet collapsed-->
+
+ <!--commet collapsed-->
+  <div class="card-body" *ngIf="isCollapsed">
     <div id="collapseExample">
-
-      
-      <div>
-        <!--list comment-->
-        <ul class="nav flex-column">
-          <li class="nav-item row mb-3 alert alert-info">
-            <img src='https://via.placeholder.com/150/771796' class="bg-primary" />
-            <div class="ml-2">
-              <span class="text-info small">trần Dưỡng<br /></span>
-              <span>because you craze =)) <br /> dsadasd ádas<br />đấ</span>
-            </div>
-          </li>
-          <li class="nav-item row mb-3 alert alert-info">
-            <img src='https://via.placeholder.com/150/771796' />
-            <div class="ml-2">
-              <span class="text-info small">trần Dưỡng<br /></span>
-              <span>because it is blue :))</span>
-            </div>
-          </li>
-        </ul>
-
-        <!--to comment-->
-        <div class="row alert">
+      <!--list comment-->
+      <ul class="nav flex-column">
+        <li class="nav-item row mb-3 alert alert-info">
+          <img src='https://via.placeholder.com/150/771796' class="bg-primary" />
+          <div class="ml-2">
+            <span class="text-info small">trần Dưỡng<br /></span>
+            <span>because you craze =)) <br /> dsadasd ádas<br />đấ</span>
+          </div>
+        </li>
+        <li class="nav-item row mb-3 alert alert-info">
           <img src='https://via.placeholder.com/150/771796' />
-          <textarea class="form-control ml-2" rows=1 style="border-radius: 25px; width: 92%" type="text" name="" id=""></textarea>
-        </div>
+          <div class="ml-2">
+            <span class="text-info small">trần Dưỡng<br /></span>
+            <span>because it is blue :))</span>
+          </div>
+        </li>
+      </ul>
+
+      <!--to comment-->
+      <div class="row alert">
+        <img src='https://via.placeholder.com/150/771796' />
+        <textarea class="form-control ml-2" rows=1 style="border-radius: 25px; width: 92%" type="text" name="" id=""></textarea>
       </div>
     </div>
   </div>

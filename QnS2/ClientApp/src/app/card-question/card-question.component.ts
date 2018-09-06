@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardQuestionComponent implements OnInit {
   public isSetting = false;
-  public isCollapsed = true;
+  public isCollapsed = false;
 
   constructor(private http:HttpClient) { }
 
