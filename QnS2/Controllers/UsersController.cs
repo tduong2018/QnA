@@ -106,7 +106,10 @@ namespace QnS2.Controllers
             //}
             await _appDbContext.SaveChangesAsync();
 
-            return new OkObjectResult("Success!!!");
+            return new OkObjectResult(new
+            {
+                Message = "Success!",
+            });
         }
 
         // POST api/role  
