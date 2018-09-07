@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QnS2.Models.Entities
 {
@@ -10,6 +11,9 @@ namespace QnS2.Models.Entities
         public string LastName { get; set; }
         //public long? FacebookId { get; set; }
         public string PictureUrl { get; set; }
+
+        [NotMapped]
+        public IList<Role> Roles;
 
         public AppUser()
         {

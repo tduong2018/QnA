@@ -16,7 +16,7 @@ using QnS2.ViewModels;
 
 namespace QnS2.Controllers
 {
-    [Authorize(Roles = Constants.Strings.JwtClaims.Admin)]
+    //[Authorize(Roles = Constants.Strings.JwtClaims.Admin)]
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
@@ -31,24 +31,85 @@ namespace QnS2.Controllers
             _appDbContext = appDbContext;
         }
 
-        // GET: Users
-        // GET api/Users
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var users = _userManager.Users.ToList();
-            return new OkObjectResult(users);
+            var userrole = from ur in _appDbContext.UserRoles
+                           join r in _appDbContext.Roles on ur.RoleId equals r.Id
+                           select new { ur.UserId, ur.RoleId, r.Name };
+
+            var user = from u in _userManager.Users.ToList()
+                       select new AppUser
+                       {
+                           Id = u.Id,
+                           FirstName = u.FirstName,
+                           LastName = u.LastName,
+                           Email = u.Email,
+                           Roles = userrole.Where(x => x.UserId == u.Id).Select(x=>new Role {id = x.RoleId, name=x.Name}).ToList()
+                       };
+
+            return new OkObjectResult(user);
         }
 
-        // GET api/Roles/5
+        // GET api/User/5
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            var role = _appDbContext.Roles.Single(x => x.Id == id);
+            var role = _userManager.Users.Single(x => x.Id == id);
             return new OkObjectResult(role);
         }
 
-        // POST api/role/create
+        // GET role of user api/Roles/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult> GetRole(string id, [FromBody]IList<Role> value)
+        {
+            var userToVerify = await _userManager.FindByIdAsync(id);
+
+            if (userToVerify == null)
+            {
+
+            }
+
+            var userroles = from ur in _appDbContext.UserRoles
+                           join r in _appDbContext.Roles on ur.RoleId equals r.Id
+                           where ur.UserId == id
+                           select new { ur.UserId, ur.RoleId, r.Name };
+
+            foreach (var r in userroles)
+            {
+                IdentityUserRole<string> idr = new IdentityUserRole<string>();
+                idr.UserId = id;
+                idr.RoleId = r.RoleId;
+                _appDbContext.UserRoles.Remove(idr);
+            }
+            await _appDbContext.SaveChangesAsync();
+
+            foreach (var r in value)
+            {
+                IdentityUserRole<string> idr = new IdentityUserRole<string>();
+                idr.UserId = id;
+                idr.RoleId = r.id;
+                await _appDbContext.UserRoles.AddAsync(idr);
+            }
+
+            //var exceptions = roleInput.Except(userRoles);
+            //foreach (var r in value)
+            //{
+            //    if(exceptions.Contains(r.name))
+            //    {
+            //        IdentityUserRole<string> idr = new IdentityUserRole<string>();
+            //        idr.UserId = id;
+            //        idr.RoleId = r.id;
+            //        await _appDbContext.UserRoles.AddAsync(idr);
+            //    }
+            //}
+            await _appDbContext.SaveChangesAsync();
+
+            return new OkObjectResult("Success!!!");
+        }
+
+        // POST api/role  
         [HttpPost]
         public async Task<ActionResult> Create([FromBody]RoleViewModel role)
         {
@@ -79,7 +140,7 @@ namespace QnS2.Controllers
                 var result = await _userManager.DeleteAsync(userToVerify);
 
                 if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
-  
+
                 return new OkObjectResult(new
                 {
                     Message = "Deleted!",
