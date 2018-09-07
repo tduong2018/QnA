@@ -2,7 +2,7 @@ import { AdminUserService } from './services/admin.user.service';
 import { QuestionerComponent } from './questioner/questioner.component';
 import { AnswerComponent } from './answer/answer.component';
 import { MakeQuestionComponent } from './make-question/make-question.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { AuthGuard } from './auth-guard.service';
@@ -143,7 +143,7 @@ export function tokenGetter() {
     AdminUserService,
     AnwserService,
     CommentService,
-	NgbActiveModal,
+	  NgbActiveModal,
     {provide:ErrorHandler, useClass:AppErrorHandler}
   ],
   entryComponents:[UserroleComponent],

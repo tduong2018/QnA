@@ -11,10 +11,13 @@
       <button class="dropdown-item btn" *ngFor="let item of RolesAccount" (click)="changeRole(item)">{{item}}</button>
     </div>
   </div>
+  <ul>
+    <li *ngIf="authService.isLoggedIn() && (this.authService.hasRole(adminRole))"><a routerLink="/admin">Admin</a></li>
+  </ul>
   <div class="form-group form-inline justify-content-center">
-    <a routerLink="/login">
+    <button class="btn" (click)="authService.logout()">
       Sign Out
-    </a>
+    </button>
     <i class="material-icons">
       exit_to_app
     </i>

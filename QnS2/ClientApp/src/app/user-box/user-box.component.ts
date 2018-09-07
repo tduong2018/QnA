@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
 
@@ -11,7 +12,7 @@ export class UserBoxComponent implements OnInit {
   
   public RolesAccount = ["Questioner", "Answer"];
   
-  constructor(private homeComponent: HomeComponent) { }
+  constructor(private homeComponent: HomeComponent, private authService: AuthService) { }
 
   ngOnInit() {
     this.Role = this.RolesAccount[0];
