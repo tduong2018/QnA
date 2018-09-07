@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
@@ -43,7 +44,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(result => { 
         console.log(result);
         if (result)
-          this.router.navigate(['/']);
+        {
+          if(this.authService.hasRole(environment.admin)) this.router.navigate(['/admin']);
+          else this.router.navigate(['/']);
+        }          
         else  
           this.invalidLogin = true;        
       },

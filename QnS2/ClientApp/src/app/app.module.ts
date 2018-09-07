@@ -11,7 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, BaseRequestOptions } from '@angular/http';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -70,67 +70,68 @@ export function tokenGetter() {
     ReactiveFormsModule,
     NgbModule,
     RouterModule.forRoot([
-      { 
-        path: '', 
-        component: HomeComponent 
+      {
+        path: '',
+        component: HomeComponent
       },
-      { 
-        path: 'admin', component: AdminComponent, 
-        canActivate: [AdminAuthGuard] 
+      {
+        path: 'admin', component: AdminComponent,
+        canActivate: [AdminAuthGuard],
+        children: [
+          {
+            path: 'roles', component: RoleMangageComponent,
+            canActivate: [AdminAuthGuard]
+          },
+          {
+            path: 'roles/new', component: RoleComponent,
+            canActivate: [AdminAuthGuard]
+          },
+          {
+            path: 'roles/:id', component: RoleComponent,
+            canActivate: [AdminAuthGuard]
+          },
+          {
+            path: 'users', component: UsermanageComponent,
+            canActivate: [AdminAuthGuard]
+          },
+          {
+            path: 'users/new', component: RoleComponent,
+            canActivate: [AdminAuthGuard]
+          },
+          {
+            path: 'users/:id', component: RoleComponent,
+            canActivate: [AdminAuthGuard]
+          }]
       },
-      { 
-        path: 'admin/roles', component: RoleMangageComponent, 
-        canActivate: [AdminAuthGuard] 
+      {
+        path: 'login',
+        component: LoginComponent
       },
-      { 
-        path: 'admin/roles/new', component: RoleComponent, 
-        canActivate: [AdminAuthGuard] 
+      {
+        path: 'signup',
+        component: SignupComponent
       },
-      { 
-        path: 'admin/roles/:id', component: RoleComponent, 
-        canActivate: [AdminAuthGuard] 
+      {
+        path: 'make-question',
+        component: MakeQuestionComponent
       },
-      { 
-        path: 'admin/users', component: UsermanageComponent, 
-        canActivate: [AdminAuthGuard] 
+      {
+        path: 'answer',
+        component: AnswerComponent
       },
-      { 
-        path: 'admin/users/new', component: RoleComponent, 
-        canActivate: [AdminAuthGuard] 
+      {
+        path: 'questioner',
+        component: QuestionerComponent
       },
-      { 
-        path: 'admin/users/:id', component: RoleComponent, 
-        canActivate: [AdminAuthGuard] 
-      },
-      { 
-        path: 'login', 
-        component: LoginComponent 
-      },
-      { 
-        path: 'signup', 
-        component: SignupComponent 
-      },
-      { 
-        path: 'make-question', 
-        component: MakeQuestionComponent 
-      },
-      { 
-        path: 'answer', 
-        component: AnswerComponent 
-      },
-      { 
-        path: 'questioner', 
-        component: QuestionerComponent 
-      },      
-      { 
-        path: '**', 
-        component:NotfoundComponent
+      {
+        path: '**',
+        component: NotfoundComponent
       },
     ]),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:61759','localhost:61758'],
+        whitelistedDomains: ['localhost:61759', 'localhost:61758'],
         blacklistedRoutes: ['']
       }
     })
@@ -143,10 +144,10 @@ export function tokenGetter() {
     AdminUserService,
     AnwserService,
     CommentService,
-	  NgbActiveModal,
-    {provide:ErrorHandler, useClass:AppErrorHandler}
+    NgbActiveModal,
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
-  entryComponents:[UserroleComponent],
+  entryComponents: [UserroleComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
