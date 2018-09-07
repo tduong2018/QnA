@@ -1,5 +1,6 @@
 namespace QnS2.Models.Entities
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Answer
@@ -12,8 +13,10 @@ namespace QnS2.Models.Entities
         [StringLength(128)]
         public string UserId { get; set; }
 
-        [StringLength(500)]
-        public string Content { get; set; }
+        public string ContentAnswer { get; set; }
+
+        public byte[] IMG {get; set; }
+        public DateTime CreateTime { get; set; }
 
         public virtual AppUser User { get; set; }
 
