@@ -119,8 +119,8 @@ namespace QnS2.Controllers
             if (ModelState.IsValid)
             {
                 IdentityRole _role = new IdentityRole();
-                _role.Id = Convert.ToBase64String(Encoding.ASCII.GetBytes(role.RoleName));
-                _role.Name = role.RoleName;
+                _role.Id = Convert.ToBase64String(Encoding.ASCII.GetBytes(role.name));
+                _role.Name = role.name;
                 _appDbContext.Roles.Add(_role);
                 var result = await _appDbContext.SaveChangesAsync();
                 return new OkObjectResult(new

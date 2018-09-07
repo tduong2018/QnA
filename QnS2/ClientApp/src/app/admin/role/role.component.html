@@ -1,7 +1,7 @@
 <form #f="ngForm" (ngSubmit)="submit(f)">
   <div class="form-group">
     <label for="RoleName">Role Name</label>
-    <input required [(ngModel)]="role.name" name="roleName" #roleName="ngModel" id="roleName" type="text" class="form-control">
+    <input required [(ngModel)]="role.name" name="name" #roleName="ngModel" type="text" class="form-control">
     <input hidden name="id" [(ngModel)]="role.id" type="text" class="form-control"/>
     <div class="alert alert-danger" *ngIf="roleName.touched && !roleName.valid">
       <div *ngIf="roleName.errors.required">

@@ -8,6 +8,6 @@ namespace QnS2.ViewModels
     public class RoleViewModel
     {
         public string id { get; set; }
-        public string RoleName { get; set; }
+        public string name { get; set; }
     }
 }

@@ -19,20 +19,22 @@
       <td>{{u.lastName}}</td>
       <td>{{u.email}}</td>
       <td>
-        <div ngbDropdown>
+        <!--         <div ngbDropdown>
           <span class="btn" id="dropdownBasic1" ngbDropdownToggle>
             ...
-          </span>
-          <div ngbDropdownMenu style="position: absolute">
-            <div *ngFor="let r of roles">
-              <button class="dropdown-item">{{r.name}}</button>
-            </div>
-          </div>
+          </span> -->
+        <!-- <div ngbDropdownMenu style="position: absolute"> -->
+        <div *ngFor="let r of u.roles">
+          <button class="dropdown-item">
+            <p>{{r.name}}</p>
+          </button>
         </div>
+        <!-- </div> -->
+        <!-- </div> -->
       </td>
       <td>
         <!--        <a [routerLink]="['/admin/roles/',r.id]">Edit</a>-->
-        <button (click)="editRole()" class="btn btn-dark">Edit role</button>
+        <button (click)="editRole(u.id,u.roles)" class="btn btn-dark">Edit role</button>
         <button (click)="delete(u.id)" class="btn btn-danger">Delete</button>
       </td>
     </tr>

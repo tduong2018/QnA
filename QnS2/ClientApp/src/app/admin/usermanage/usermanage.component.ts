@@ -4,7 +4,7 @@ import { RoleService } from '../../services/role.service';
 import { Router } from '@angular/router';
 import { AppError } from '../../common/app-error';
 import { NotFoundError } from '../../common/not-found-error';
-import { user } from '../../Models/user';
+import { user } from '../../Models/user.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserroleComponent } from '../userrole/userrole.component';
 
@@ -15,7 +15,6 @@ import { UserroleComponent } from '../userrole/userrole.component';
 })
 export class UsermanageComponent implements OnInit {
   users: user[]
-  roles: any
   error: string
   constructor(private adminService: AdminUserService, private roleService: RoleService,
     private router: Router,
@@ -26,18 +25,6 @@ export class UsermanageComponent implements OnInit {
         this.users = result as user[];
       //else
       //this.invalidLogin = true;
-    },
-      (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          //this.invalidLogin = true;
-          this.error = error.originalError;
-        }
-        else throw error;
-      });
-
-    roleService.getAll().subscribe(result => {
-      if (result)
-        this.roles = result;
     },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
@@ -66,8 +53,10 @@ export class UsermanageComponent implements OnInit {
     this.router.navigate(['/admin/roles']);
   }
 
-  editRole() {
-    this.modalService.open(UserroleComponent);
+  editRole(iduser,r) {
+    const modalRef = this.modalService.open(UserroleComponent);
+    modalRef.componentInstance.userrole = r;
+    modalRef.componentInstance.id = iduser;
   }
 
   ngOnInit() { }

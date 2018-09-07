@@ -38,8 +38,8 @@ export class DataService {
         catchError(this.HandleError));;
   }
 
-  update(resource) {
-    return this.http.put(this.baseUrl + '/' + this.url, JSON.stringify(resource), { headers: this.headers })
+  update(id,resource) {
+    return this.http.put(this.baseUrl + '/' + this.url + '/' + id, JSON.stringify(resource), { headers: this.headers })
       .pipe(
         map(response => response),
         catchError(this.HandleError));

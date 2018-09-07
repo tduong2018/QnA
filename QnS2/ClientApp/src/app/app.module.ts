@@ -143,6 +143,7 @@ export function tokenGetter() {
     AdminUserService,
     AnwserService,
     CommentService,
+	NgbActiveModal,
     {provide:ErrorHandler, useClass:AppErrorHandler}
   ],
   entryComponents:[UserroleComponent],

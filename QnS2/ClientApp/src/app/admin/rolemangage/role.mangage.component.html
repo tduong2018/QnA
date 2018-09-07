@@ -1,5 +1,5 @@
 <p>
-  <a routerLink="/admin/roles/new" class="btn btn-primary">New Role</a>
+  <a routerLink="/admin/roles" class="btn btn-primary" (click)="editRole(0,null)">New Role</a>
 </p>
 <table class="table">
   <thead>
@@ -14,8 +14,8 @@
       <td>{{r.name}}</td>
       <td></td>
       <td>
-        <a  [routerLink]="['/admin/roles/',r.id]" >Edit</a>
-        <a  (click)="delete(r.id)" >Delete</a>
+        <a routerLink="/admin/roles" (click)="editRole(1,r)">Edit</a>
+        <button class="btn badge-danger" (click)="delete(r.id)" >Delete</button>
       </td>
     </tr>
   </tbody>
