@@ -15,4 +15,12 @@ export class AdminComponent implements OnInit {
 /*     this.orderService.getOrders()
       .subscribe(orders => this.orders = orders); */
   }
+  posts:any[] = [2, 3, 1, 5]
+
+  deletePost(post)
+  {
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
+  }
+  
 }

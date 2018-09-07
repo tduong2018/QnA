@@ -10,7 +10,7 @@ export class AdminAuthGuard extends AuthGuard {
     if (!isAuthenticated)
       return false; 
 
-    if (this.authService.currentUser.roles == environment.admin)
+    if (this.authService.hasRole(environment.admin))
       return true; 
 
     this.router.navigate(['/no-access']);
