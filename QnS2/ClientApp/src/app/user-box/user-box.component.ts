@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-user-box',
@@ -10,14 +11,21 @@ export class UserBoxComponent implements OnInit {
   
   public RolesAccount = ["Questioner", "Answer"];
   
-  constructor() { }
+  constructor(private homeComponent: HomeComponent) { }
 
   ngOnInit() {
     this.Role = this.RolesAccount[0];
   }
 
   public changeRole(item){
+
     this.Role = item;
 
+    if(item == this.RolesAccount[1])
+      item = 2;
+    else
+      item = 1;
+
+    this.homeComponent.userRoles = item;
   }
 }
