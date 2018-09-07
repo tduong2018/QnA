@@ -1,7 +1,9 @@
 namespace QnS2.Models.Entities
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using static System.Net.Mime.MediaTypeNames;
 
     public partial class Question
     {
@@ -18,10 +20,17 @@ namespace QnS2.Models.Entities
 
         [Required]
         [StringLength(500)]
-        public string Content { get; set; }
+        public string ContentQuestion { get; set; }
+
+        public int TopicID { get; set; }
+
+        public System.Byte[] img { get; set; }
+
+        public DateTime CreateDate { get; set; }
+
+        public string Delete { get; set; }
 
         [Required]
-        [StringLength(128)]
         public string UserId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,11 @@
+C:\Users\DuongT\Desktop\QnAs\QnS2\bin\Debug\netcoreapp2.0\QnS2.deps.json
+C:\Users\DuongT\Desktop\QnAs\QnS2\bin\Debug\netcoreapp2.0\QnS2.runtimeconfig.json
+C:\Users\DuongT\Desktop\QnAs\QnS2\bin\Debug\netcoreapp2.0\QnS2.runtimeconfig.dev.json
+C:\Users\DuongT\Desktop\QnAs\QnS2\bin\Debug\netcoreapp2.0\QnS2.dll
+C:\Users\DuongT\Desktop\QnAs\QnS2\bin\Debug\netcoreapp2.0\QnS2.pdb
+C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.csprojAssemblyReference.cache
+C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.csproj.CoreCompileInputs.cache
+C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfoInputs.cache
+C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfo.cs
+C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.dll
+C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.pdb
