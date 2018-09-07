@@ -31,6 +31,10 @@ import { UserroleComponent } from './admin/userrole/userrole.component';
 import { UserBoxComponent } from './user-box/user-box.component';
 import { MenuComponent } from './menu/menu.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { CardAnswerComponent } from './card-answer/card-answer.component';
+import { CardCommentComponent } from './card-comment/card-comment.component';
+import { AnwserService } from './services/Anwser.service';
+import { CommentService } from './services/Comment.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -54,7 +58,9 @@ export function tokenGetter() {
     UsermanageComponent,
     UserroleComponent,
     UserBoxComponent,
-    MenuComponent
+    MenuComponent,
+    CardAnswerComponent,
+    CardCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -135,6 +141,8 @@ export function tokenGetter() {
     AdminAuthGuard,
     RoleService,
     AdminUserService,
+    AnwserService,
+    CommentService,
     {provide:ErrorHandler, useClass:AppErrorHandler}
   ],
   entryComponents:[UserroleComponent],

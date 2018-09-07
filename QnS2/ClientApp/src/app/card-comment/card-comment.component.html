@@ -1,0 +1,18 @@
+<div id="card-comment">
+  <!--list comment-->
+  <ul class="nav flex-column">
+    <li class="nav-item row mb-3 alert alert-info" *ngFor="let item of listAnswer">
+      <img class="img-account" src='https://via.placeholder.com/150/771796' />
+      <div class="ml-2">
+        <span class="text-info small">{{item.user.userName}}<br /></span>
+        <span>{{item.contentAnswer}}</span>
+      </div>
+    </li>
+  </ul>
+
+  <!--to comment-->
+  <div class="row alert">
+    <img class="img-account" src='https://via.placeholder.com/150/771796' />
+    <textarea class="form-control ml-2" rows=1 style="border-radius: 25px; width: 92%" type="text" name="" id=""></textarea>
+  </div>
+</div>

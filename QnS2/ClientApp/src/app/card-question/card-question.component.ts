@@ -18,5 +18,5 @@ export class CardQuestionComponent implements OnInit {
 }
 
 interface card{
-
+  
 }

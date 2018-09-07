@@ -15,7 +15,7 @@ import { UserroleComponent } from '../userrole/userrole.component';
 })
 export class UsermanageComponent implements OnInit {
   users: user[]
-  userroles: any
+  roles: any
   error: string
   constructor(private adminService: AdminUserService, private roleService: RoleService,
     private router: Router,
@@ -37,7 +37,7 @@ export class UsermanageComponent implements OnInit {
 
     roleService.getAll().subscribe(result => {
       if (result)
-        this.userroles = result;
+        this.roles = result;
     },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
@@ -66,10 +66,8 @@ export class UsermanageComponent implements OnInit {
     this.router.navigate(['/admin/roles']);
   }
 
-  editRole(iduser,r) {
-    const modalRef = this.modalService.open(UserroleComponent);
-    modalRef.componentInstance.userrole = r;
-    modalRef.componentInstance.id = iduser;
+  editRole() {
+    this.modalService.open(UserroleComponent);
   }
 
   ngOnInit() { }

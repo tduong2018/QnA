@@ -1,3 +1,7 @@
-<p>
-  answer works!
-</p>
+<div class="mt-4" style="height: 100%">
+  <ul class="navbar-nav scroll-list-comment">
+    <li class="nav-item pb-3" *ngFor="let card of cards_answer">
+      <app-card-answer [cards]="card"></app-card-answer>
+    </li>
+  </ul>
+</div>

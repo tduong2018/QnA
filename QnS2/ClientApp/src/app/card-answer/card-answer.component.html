@@ -1,0 +1,30 @@
+<div class="card-answer">
+  <div class="card-header">
+    <div class="">
+      <b class="ml-2">{{card.title}}</b>
+      <span class="text-info ml-3 small">{{card.createDate}}</span>
+      <div class="float-right">
+        <div ngbDropdown>
+          <span class="btn" ngbDropdownToggle placement="bottom" ngbTooltip="settings">
+            <i class="material-icons">...</i>
+          </span>
+          <div ngbDropdownMenu style="position: absolute;">
+            <a class="dropdown-item" href="#">Update</a>
+            <a class="dropdown-item" href="#">Delete</a>
+          </div>
+        </div>
+      </div>
+      <div class="ml-5">
+        <span>{{card.contentQuestion}}</span>
+      </div>
+      <div class="small text-right mt-3">
+        <a (click)="isCollapsed = !isCollapsed" class="btn"><span>(22)</span>Comment</a>
+      </div>
+    </div>
+  </div>
+
+ <!--commet collapsed-->
+  <div class="card-body" *ngIf="isCollapsed">
+    <app-card-comment [questionID]="card.questionId"></app-card-comment>
+  </div>
+</div>

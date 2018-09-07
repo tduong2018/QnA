@@ -54,11 +54,6 @@ export class AuthService {
     return token && !this.jwtHelper.isTokenExpired(token);
   }
 
-  hasRole(role){
-    let roles: any[] = this.currentUser.roles;
-    if (roles.indexOf(role)>=0) return true;
-    return false;
-  }
 
   register(userRegistration) {
     let body = JSON.stringify(userRegistration);
