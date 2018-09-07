@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -9,18 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
   orders: any[];
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
 /*     this.orderService.getOrders()
       .subscribe(orders => this.orders = orders); */
-  }
-  posts:any[] = [2, 3, 1, 5]
-
-  deletePost(post)
-  {
-    let index = this.posts.indexOf(post);
-    this.posts.splice(index, 1);
   }
   
 }

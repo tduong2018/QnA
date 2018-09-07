@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   login(credentials) {
-    return this.http.post<Token>(this.baseUrl+'/auth/login', JSON.stringify(credentials), { headers: this.headers }).pipe(
+    return this.http.post<Token>(this.baseUrl + '/auth/login', JSON.stringify(credentials), { headers: this.headers }).pipe(
       map(response => {
         let result = response;
 
@@ -54,15 +54,17 @@ export class AuthService {
     return token && !this.jwtHelper.isTokenExpired(token);
   }
 
-  hasRole(role){
+  hasRole(role) {
     let roles: any[] = this.currentUser.roles;
-    if (roles.indexOf(role)>=0) return true;
+    if (roles != null) {
+      if (roles.indexOf(role) >= 0) return true;
+    }
     return false;
   }
 
   register(userRegistration) {
     let body = JSON.stringify(userRegistration);
-    return this.http.post(this.baseUrl+'/accounts', body, { headers: this.headers }).
+    return this.http.post(this.baseUrl + '/accounts', body, { headers: this.headers }).
       pipe(
         map(response => true),
         catchError(this.HandleError));

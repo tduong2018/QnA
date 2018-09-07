@@ -1,19 +1,31 @@
-<form #f="ngForm" (ngSubmit)="submit(f)">
-  <div class="form-group">
-    <label for="RoleName">Role Name</label>
-    <input required [(ngModel)]="role.name" name="name" #roleName="ngModel" type="text" class="form-control">
-    <input hidden name="id" [(ngModel)]="role.id" type="text" class="form-control"/>
-    <div class="alert alert-danger" *ngIf="roleName.touched && !roleName.valid">
-      <div *ngIf="roleName.errors.required">
-        Rolw name is required
+<div class="modal-editrole">
+  <div class="modal-body">
+    <div class="modal-header">
+      <!---->
+      <h4 class="modal-title" id="modal-basic-title">Edit role</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form #f="ngForm" (ngSubmit)="submit(f)">
+      <div class="form-group">
+        <label for="RoleName">Role Name</label>
+        <input required [(ngModel)]="role.name" name="name" #roleName="ngModel" type="text" class="form-control">
+        <input hidden name="id" [(ngModel)]="role.id" type="text" class="form-control" />
+        <div class="alert alert-danger" *ngIf="roleName.touched && !roleName.valid">
+          <div *ngIf="roleName.errors.required">
+            Rolw name is required
+          </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="error==''">
+          {{error}}
+        </div>
       </div>
-    </div>
-    <div class="alert alert-danger" *ngIf="error==''">
-      {{error}}
-    </div>
+      <p>
+        {{f.value | json}}
+      </p>
+      <div class="modal-footer">
+        <button class="btn btn-primary" [disabled]="!f.valid">Submit</button></div>
+    </form>
   </div>
-  <p>
-    {{f.value | json}}
-  </p>
-  <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
-</form>
+</div>

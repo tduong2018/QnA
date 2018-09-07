@@ -14,7 +14,7 @@
       <td>{{r.name}}</td>
       <td></td>
       <td>
-        <a routerLink="/admin/roles" (click)="editRole(1,r)">Edit</a>
+        <button class="btn btn-outline-info" routerLink="/admin/roles" (click)="editRole(1,r)">Edit</button>
         <button class="btn badge-danger" (click)="delete(r.id)" >Delete</button>
       </td>
     </tr>
