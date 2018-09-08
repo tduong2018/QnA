@@ -5,6 +5,7 @@ import { AppError } from '../../common/app-error';
 import { NotFoundError } from '../../common/not-found-error';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-role.mangage',
@@ -15,15 +16,16 @@ export class RoleMangageComponent implements OnInit {
 
   roles: any
   error: string
-  constructor(private roleService: RoleService, private router: Router, private modalService: NgbModal) {
-
-  }
+  constructor(private roleService: RoleService,
+    private router: Router,
+    private modalService: NgbModal,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.get();
   }
 
-  get(){
+  get() {
     this.roleService.getAll().subscribe(result => {
       if (result)
         this.roles = result;
@@ -43,9 +45,8 @@ export class RoleMangageComponent implements OnInit {
     if (!confirm('Are you sure want to delete this role?')) return;
     this.roleService.delete(id).subscribe(result => {
       this.get();
-        //this.roles = result;
-      //else
-      //this.invalidLogin = true;
+      //this.roles = result;
+      this.toastr.success('Deleted!', 'Success!');
     },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
@@ -57,9 +58,13 @@ export class RoleMangageComponent implements OnInit {
     this.router.navigate(['/admin/roles']);
   }
 
-  editRole(mode,role){
+  editRole(mode, role) {
     const modalRef = this.modalService.open(RoleComponent);
     modalRef.componentInstance.original = role;
     modalRef.componentInstance.mode = mode;
+    modalRef.result.then((result) => {
+      let closeResult = result;
+      if (closeResult === 'Save') this.get();
+    }, (reason) => { });
   }
 }

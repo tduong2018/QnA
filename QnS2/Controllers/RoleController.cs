@@ -52,6 +52,10 @@ namespace QnS2.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (_appDbContext.Roles.Where(x=>x.Name==role.name).ToList().Count > 0)
+                {
+                    return BadRequest(Errors.AddErrorToModelState("duplicate", "Already have this role. Please add another one!", ModelState));
+                }                
                 IdentityRole _role = new IdentityRole();
                 _role.Id = Convert.ToBase64String(Encoding.ASCII.GetBytes(role.name));
                 _role.Name = role.name;

@@ -8,7 +8,7 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, BaseRequestOptions } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -35,6 +35,9 @@ import { CardAnswerComponent } from './card-answer/card-answer.component';
 import { CardCommentComponent } from './card-comment/card-comment.component';
 import { AnwserService } from './services/Anwser.service';
 import { CommentService } from './services/Comment.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -63,12 +66,15 @@ export function tokenGetter() {
     CardCommentComponent
   ],
   imports: [
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxSpinnerModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -148,6 +154,7 @@ export function tokenGetter() {
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   entryComponents: [UserroleComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

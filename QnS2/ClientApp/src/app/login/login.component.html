@@ -1,25 +1,76 @@
-<form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value)">
-    <div class="row">
-        <div class="col-md-6 new-user-alert">
-            <div *ngIf="brandNew" class="alert alert-success" role="alert">
-                <strong>All set!</strong> Please login with your account
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" #f="ngForm" (ngSubmit)="signIn(f.value)">
+                <span class="login100-form-title p-b-43 mb-5">
+                    Login to continue
+                </span>
+                
+                <div class="row mb-1" style="border-radius: 10px">
+                    <div class="col new-user-alert">
+                        <div *ngIf="brandNew" class="alert alert-success" role="alert">
+                            <strong class="ml-4">All set!</strong> Please login with your account
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="invalidLogin" class="alert alert-danger mb-1"><p class="ml-4">{{ error }}.</p></div>
+
+                <div type="email" class="wrap-input100 validate-input form-control" id="inputEmail" data-validate="Valid email is required: ex@abc.xyz">
+                    <input [ngClass]="(f.value.userName === '')?'input100':'input100 has-val'" type="text" name="userName" [(ngModel)]="this.credentials.email">
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Email</span>
+                </div>
+
+                <div class="wrap-input100 validate-input form-control" id="inputPassword" data-validate="Password is required">
+                    <input [ngClass]="(f.value.password === '')?'input100':'input100 has-val'" type="password" name="password" ngModel>
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Password</span>
+                </div>
+
+                <div class="flex-sb-m w-full p-t-3 p-b-32 mb-4">
+                    <div class="contact100-form-checkbox float-left">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div>
+                        <a href="#" class="txt1 float-right">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="container-login100-form-btn pt-3">
+                    <button class="login100-form-btn" type="submit">
+                        Login
+                    </button>
+                </div>
+
+                <div class="text-center p-t-46 p-b-20">
+                    <span class="txt2">
+                        or sign up using
+                    </span>
+                </div>
+
+                <div class="login100-form-social flex-c-m">
+    <!--                 <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+                        <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+
+                    <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a> -->
+
+                    <a class="btn btn-outline-info text-info" (click)="open()"> &nbsp; Registry now! &nbsp; </a>
+                </div>
+            </form>
+
+            <div class="login100-more">
             </div>
         </div>
     </div>
-    <h2 *ngIf="!brandNew" class="form-signin-heading">Please sign in</h2>
-    <div *ngIf="invalidLogin" class="alert alert-danger">{{ error }}.</div>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" name="userName" [(ngModel)]="this.credentials.email " class="form-control"
-        placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" name="password" ngModel class="form-control" placeholder="Password"
-        required>
-    <div class="form-inline">
-        <div class="col-md-6">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </div>
-        <div class="col-md-6">
-            <button  routerLink="/signup" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-        </div>
-    </div>
-</form>
+</div>

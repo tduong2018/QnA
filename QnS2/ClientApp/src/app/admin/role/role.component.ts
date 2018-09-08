@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { role } from '../../Models/role.interface';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-role',
@@ -13,18 +14,16 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./role.component.css']
 })
 export class RoleComponent implements OnInit {
-  error;
-  id='';
-  rolw;
-  @Input() mode:boolean
+  error = '';
+  @Input() mode: boolean
   @Input() original: role = { id: '', name: '' };
   role: role = { id: '', name: '' };
+
   constructor(private roleService: RoleService,
     private router: Router,
     private route: ActivatedRoute,
-    public activeModal: NgbActiveModal) {
-/*     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.roleService.get(this.id).pipe(take(1)).subscribe(r => this.role = r as role); */
+    public activeModal: NgbActiveModal,
+    private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -34,14 +33,15 @@ export class RoleComponent implements OnInit {
 
   submit(f) {
     if (this.mode) {
-      this.roleService.update('',f.value).subscribe(result => {
-        alert("success!!!");
-        this.activeModal.dismiss();
+      this.roleService.update('', f.value).toPromise().then(result => {
+        this.toastr.success('Updated!', 'Success!');
+        this.activeModal.close('Save');
       });
     }
     else {
       this.roleService.create(f.value).subscribe(result => {
-
+        this.toastr.success('Created!', 'Success!');
+        this.activeModal.close('Save');
       },
         (error: AppError) => {
           if (error instanceof BadInput) {
@@ -50,6 +50,5 @@ export class RoleComponent implements OnInit {
           else throw error;
         });
     }
-    this.router.navigate(['/admin/roles'])
   }
 }

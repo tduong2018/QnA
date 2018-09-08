@@ -2,10 +2,11 @@ import { role } from '../../Models/role.interface';
 import { AdminUserService } from './../../services/admin.user.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
 import { RoleService } from '../../services/role.service';
 import { AppError } from '../../common/app-error';
 import { NotFoundError } from '../../common/not-found-error';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-userrole',
@@ -23,13 +24,14 @@ export class UserroleComponent implements OnInit {
   original: number
   clicked: boolean = false;
 
-  constructor(public activeModal: NgbActiveModal, private roleService: RoleService, private adminUserService: AdminUserService) {
+  constructor(public activeModal: NgbActiveModal,
+    private roleService: RoleService,
+    private adminUserService: AdminUserService,
+    private toastr: ToastrService) {
     roleService.getAll().subscribe(result => {
       if (result)
         this.roles = result as role[];
-      //inform
-      //else
-      //this.invalidLogin = true;
+      //spiner
     },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
@@ -39,11 +41,9 @@ export class UserroleComponent implements OnInit {
         }
         else throw error;
       });
-    //console.log(this.id);
   }
 
   deletePost(role) {
-    console.log(JSON.stringify(role));
     let index = this.userrole.indexOf(role);
     this.userrole.splice(index, 1);
 
@@ -58,7 +58,7 @@ export class UserroleComponent implements OnInit {
 
   addRole() {
     if (this.buttonText != "Choose role") {
-      var idL = this.userrole.map(x=>x.id);
+      var idL = this.userrole.map(x => x.id);
       if (idL.indexOf(this.roleChoosed.id) === -1) {
         this.userrole.splice(0, 0, this.roleChoosed);
         this.clicked = true;
@@ -69,22 +69,17 @@ export class UserroleComponent implements OnInit {
   saveSubmit(f) {
     if (!(this.original == this.userrole.length)) {
       // At present we use function update to just for role ***************
-      this.adminUserService.update(this.id, this.userrole).subscribe(result => {
-        if (result)
-        {
-          alert("success!");
-          this.clicked = false;
-        }
-          
-        //inform
-        //else
-        //this.invalidLogin = true;
-      },
-        (error: AppError) => {
+      this.adminUserService.update(this.id, this.userrole)
+        .subscribe(result => {
+          if (result) {
+            this.toastr.success('Updated!', 'Success!');
+            this.clicked = false;
+            this.activeModal.close('Save');
+          }
+        }, (error: AppError) => {
           if (error instanceof NotFoundError) {
             //this.invalidLogin = true;
             //this.error = error.originalError;
-
           }
           else throw error;
         });

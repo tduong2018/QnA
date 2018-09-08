@@ -16,11 +16,13 @@ import { UserroleComponent } from '../userrole/userrole.component';
 export class UsermanageComponent implements OnInit {
   users: user[]
   error: string
-  constructor(private adminService: AdminUserService, private roleService: RoleService,
+  constructor(private adminService: AdminUserService,
+    private roleService: RoleService,
     private router: Router,
-    private modalService: NgbModal
-  ) {
-    adminService.getAll().subscribe(result => {
+    private modalService: NgbModal) { }
+
+  get() {
+    this.adminService.getAll().subscribe(result => {
       if (result)
         this.users = result as user[];
       //else
@@ -53,11 +55,17 @@ export class UsermanageComponent implements OnInit {
     this.router.navigate(['/admin/roles']);
   }
 
-  editRole(iduser,r) {
+  editRole(iduser, r) {
     const modalRef = this.modalService.open(UserroleComponent);
-    modalRef.componentInstance.userrole = r;
+    modalRef.componentInstance.userrole = JSON.parse(JSON.stringify(r));
     modalRef.componentInstance.id = iduser;
+    modalRef.result.then((result) => {
+      let closeResult = result;
+      if (closeResult === 'Save') this.get();
+    }, (reason) => { });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.get();
+  }
 }

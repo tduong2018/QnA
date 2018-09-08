@@ -5,6 +5,8 @@ import { finalize } from 'rxjs/operators';
 import { UserRegistration } from '../Models/user.registration.interface';
 import { AppError } from '../common/app-error';
 import { BadInput } from '../common/bad-input';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +17,10 @@ export class SignupComponent implements OnInit {
   errors: string;
   isRequesting: boolean;
   submitted: boolean = false;
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, 
+    private router: Router,
+    public activeModal: NgbActiveModal,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -30,7 +35,8 @@ export class SignupComponent implements OnInit {
         .subscribe(
           result => {
             if (result) {
-              alert("Success");
+              this.toastr.success('Please login!', 'Account was created!');
+              this.activeModal.dismiss();
               this.router.navigate(['/login'], { queryParams: { brandNew: true, email: value.email } });
             }
           },
