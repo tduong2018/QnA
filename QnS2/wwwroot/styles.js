@@ -89,7 +89,7 @@ module.exports = "/* based on angular-toastr css https://github.com/Foxandxss/an
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\r\n"
+module.exports = "/* You can add global styles to this file, and also import other style files */\r\nhtml, body{\r\n    height: 100%;\r\n}\r\n"
 
 /***/ }),
 
