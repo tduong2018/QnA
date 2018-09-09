@@ -16,6 +16,7 @@ namespace QnS2.Models.Entities
         public string ContentAnswer { get; set; }
 
         public byte[] IMG {get; set; }
+
         public DateTime CreateTime { get; set; }
 
         public virtual AppUser User { get; set; }

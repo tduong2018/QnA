@@ -24,11 +24,15 @@ namespace QnS2.Models.Entities
 
         public int TopicID { get; set; }
 
-        public System.Byte[] img { get; set; }
-
         public DateTime CreateDate { get; set; }
 
         public string Delete { get; set; }
+
+        public string AvatarUser { get; set; }
+
+        public string UserName { get; set; }
+
+        public string TopicName { get; set; }
 
         [Required]
         public string UserId { get; set; }

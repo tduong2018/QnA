@@ -9,3 +9,14 @@ C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfoInput
 C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfo.cs
 C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.dll
 C:\Users\DuongT\Desktop\QnAs\QnS2\obj\Debug\netcoreapp2.0\QnS2.pdb
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.deps.json
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.runtimeconfig.json
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.runtimeconfig.dev.json
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.dll
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.pdb
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.csprojAssemblyReference.cache
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.csproj.CoreCompileInputs.cache
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfoInputs.cache
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfo.cs
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.dll
+C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.pdb

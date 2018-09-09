@@ -25,12 +25,24 @@ namespace QnS2.Controllers
         }
 
         [HttpGet("[action]")]
-        public JsonResult ListQuestion()
+        public JsonResult GetListQuestion(string title="")
         {
-            return Json(_appDbContext.Questions.Select(x => new Question {
-                QuestionId = x.QuestionId,
-                Title = x.Title
-            }));
+            var Questions = new List<Question>();
+
+            Questions = _appDbContext.Questions.Select(n => new Question
+            {
+                UserId = n.UserId,
+                QuestionId = n.QuestionId,
+                AvatarUser = n.User.PictureUrl,
+                UserName = (n.User.FirstName + n.User.LastName),
+                //TopicName = n.TopicName,
+                Title = n.Title,
+                ContentQuestion = n.ContentQuestion,
+                TopicID = n.TopicID,
+                CreateDate = n.CreateDate,
+                Delete = n.Delete
+            }).Where(n => (n.Delete.Equals("True") && n.Title.Contains(title))).ToList();
+            return Json(Questions);
         }
 
         [HttpGet("[action]")]
@@ -49,15 +61,14 @@ namespace QnS2.Controllers
         }
 
         [HttpGet("[action]")]
-        public JsonResult GetQuestion(int questionId = 13)
+        public JsonResult GetQuestion(int questionId = 1)
         {
             return Json(_appDbContext.Questions.Where(c => c.QuestionId == questionId).Select(x=> new Question {
                 QuestionId= x.QuestionId,
                 Title = x.Title,
                 TopicID = x.TopicID,
                 ContentQuestion = x.ContentQuestion,
-                CreateDate = x.CreateDate,
-                img = x.img
+                CreateDate = x.CreateDate
             }));
         }
 
@@ -73,7 +84,6 @@ namespace QnS2.Controllers
             _ques.Title = model.Title;
             _ques.TopicID = model.TopicID;
             _ques.ContentQuestion = model.ContentQuestion;
-            _ques.img = model.img;
             _ques.CreateDate = model.CreateDate;
             _ques.Delete = model.Delete;
             _appDbContext.Questions.Add(_ques);
@@ -95,7 +105,6 @@ namespace QnS2.Controllers
             _ques.Title = model.Title;
             _ques.TopicID = model.TopicID;
             _ques.ContentQuestion = model.ContentQuestion;
-            _ques.img = model.img;
             _ques.Delete = model.Delete;
             _appDbContext.Questions.Update(_ques);
             var result = await _appDbContext.SaveChangesAsync();

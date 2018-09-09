@@ -47,15 +47,15 @@ namespace QnS2.Controllers
             //using()
             //{
             userId = "74d2c91b-2bdf-4f5b-b9c6-d6a2bd2fd1fd";
-            var lstQuestion = _appDbContext.Questions.Select(x => new Question
+            List<Question> Questions = _appDbContext.Questions.Select(x => new Question
             {
                 UserId = x.UserId,
                 QuestionId = x.QuestionId,
                 Title = x.Title,
                 CreateDate = x.CreateDate,
-                ContentQuestion = x.ContentQuestion
-            }).Where(p => p.UserId.Equals(userId)).ToList();
-            return new OkObjectResult(lstQuestion);
+                ContentQuestion = x.ContentQuestion,
+            }).Where(p => p.UserId.Equals(userId) && p.Delete.Equals("True")).ToList();
+            return new OkObjectResult(Questions);
             //}
         }
 

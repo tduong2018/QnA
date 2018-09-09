@@ -13358,23 +13358,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DuongT\\.nuget\\packages\\": {},
+    "C:\\Users\\lopch\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DuongT\\Desktop\\QnAs\\QnS2\\QnS2.csproj",
+      "projectUniqueName": "C:\\Users\\lopch\\OneDrive\\Máy tính\\QnA\\QnS2\\QnS2.csproj",
       "projectName": "QnS2",
-      "projectPath": "C:\\Users\\DuongT\\Desktop\\QnAs\\QnS2\\QnS2.csproj",
-      "packagesPath": "C:\\Users\\DuongT\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DuongT\\Desktop\\QnAs\\QnS2\\obj\\",
+      "projectPath": "C:\\Users\\lopch\\OneDrive\\Máy tính\\QnA\\QnS2\\QnS2.csproj",
+      "packagesPath": "C:\\Users\\lopch\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lopch\\OneDrive\\Máy tính\\QnA\\QnS2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\DuongT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\lopch\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
