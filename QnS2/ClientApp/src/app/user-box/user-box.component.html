@@ -1,7 +1,7 @@
 <form class="account text-center mt-4">
   <div class="form-group">
-    <img src="https://via.placeholder.com/150/771796" alt="">
-    <p>Trần Dưỡng</p>
+    <img [src]="Account.avatar" alt="">
+    <p>{{Account.fullname}}</p>
   </div>
   <div ngbDropdown class="form-group">
     <span class="btn" id="dropdownBasic1" ngbDropdownToggle>
@@ -11,9 +11,6 @@
       <button class="dropdown-item btn" *ngFor="let item of RolesAccount" (click)="changeRole(item)">{{item}}</button>
     </div>
   </div>
-  <ul>
-    <li *ngIf="authService.isLoggedIn() && (this.authService.hasRole(adminRole))"><a routerLink="/admin">Admin</a></li>
-  </ul>
   <div class="form-group form-inline justify-content-center">
     <button class="btn" (click)="authService.logout()">
       Sign Out

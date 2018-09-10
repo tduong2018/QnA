@@ -38,6 +38,8 @@ import { CommentService } from './services/Comment.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { QuestionService } from './services/Question.service';
+import { UserService } from './services/User.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -148,9 +150,11 @@ export function tokenGetter() {
     AdminAuthGuard,
     RoleService,
     AdminUserService,
+    UserService,
     AnwserService,
     CommentService,
     NgbActiveModal,
+    QuestionService,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   entryComponents: [UserroleComponent],

@@ -1,9 +1,16 @@
 <div class="card-questioner">
   <div class="card-header">
     <div class="">
-      <img src='https://via.placeholder.com/150/771796' />
-      <span class="ml-2">Trần Dưỡng</span>
-      <span class="text-info ml-3 small">(just now)</span>
+      
+      <span *ngIf="Question.avatarUser!=null; else avartarNull">
+        <img src='https://via.placeholder.com/150/771796' />
+      </span>
+      <ng-template #avartarNull>
+        <img src='https://via.placeholder.com/150/24f355' />
+      </ng-template>
+
+      <span class="ml-2">{{Question.userName}}</span>
+      <span class="text-info ml-3 small">{{Question.createDate}}</span>
       <div class="float-right">
         <div ngbDropdown>
           <span class="btn" ngbDropdownToggle placement="bottom" ngbTooltip="settings">
@@ -16,40 +23,15 @@
         </div>
       </div>
       <div class="ml-5">
-        <span>why sky is blue?</span>
+        <span>{{Question.contentQuestion}}</span>
       </div>
-      <div class="small text-right mt-3">
-        <a (click)="isCollapsed = !isCollapsed" class="btn"><span>(22)</span>Comment</a>
+      <div class="text-right mt-3 btn-comment">
+        <span (click)="isCollapsed = !isCollapsed" class="btn ">Comment<span> ({{Question.countsAnswer}})</span></span>
       </div>
     </div>
   </div>
 
- <!--commet collapsed-->
+  <!--commet collapsed-->
   <div class="card-body" *ngIf="isCollapsed">
-    <div id="collapseExample">
-      <!--list comment-->
-      <ul class="nav flex-column">
-        <li class="nav-item row mb-3 alert alert-info">
-          <img src='https://via.placeholder.com/150/771796' class="bg-primary" />
-          <div class="ml-2">
-            <span class="text-info small">trần Dưỡng<br /></span>
-            <span>because you craze =)) <br /> dsadasd ádas<br />đấ</span>
-          </div>
-        </li>
-        <li class="nav-item row mb-3 alert alert-info">
-          <img src='https://via.placeholder.com/150/771796' />
-          <div class="ml-2">
-            <span class="text-info small">trần Dưỡng<br /></span>
-            <span>because it is blue :))</span>
-          </div>
-        </li>
-      </ul>
-
-      <!--to comment-->
-      <div class="row alert">
-        <img src='https://via.placeholder.com/150/771796' />
-        <textarea class="form-control ml-2" rows=1 style="border-radius: 25px; width: 92%" type="text" name="" id=""></textarea>
-      </div>
-    </div>
-  </div>
+    <app-card-comment [questionID]="Question.questionId"></app-card-comment>
 </div>

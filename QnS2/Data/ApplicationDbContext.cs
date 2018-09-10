@@ -14,6 +14,7 @@ namespace QnS2.Data
         }
         public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<Topic> Topic { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AnwserService } from '../services/Anwser.service';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MakeQuestionComponent } from '../make-question/make-question.component';
+import { QuestionService } from '../services/Question.service';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
@@ -8,12 +10,15 @@ import { AnwserService } from '../services/Anwser.service';
 })
 export class AnswerComponent implements OnInit {
 
-  public cards_answer:any;
-
-  constructor(private _anwser : AnwserService) { }
+  public Questions : any ;
+  constructor(private modalService: NgbModal, private _http:HttpClient, private question:QuestionService) { }
 
   ngOnInit() {
-    this._anwser.get('74d2c91b-2bdf-4f5b-b9c6-d6a2bd2fd1fd').subscribe(card => this.cards_answer = card);
+    this.question.getCustom('getListQuestion').subscribe(question => this.Questions = question);
+  }
+
+  public CreatQuestion() {
+    this.modalService.open(MakeQuestionComponent);
   }
 
 }

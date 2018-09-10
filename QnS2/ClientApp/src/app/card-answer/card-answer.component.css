@@ -1,10 +1,14 @@
-.card-answer{
+.card-questioner{
     border: 1px solid rgba(0,0,0,.125);
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
+.card-questioner img{
+    height: 40px; 
+    width: 40px; 
+    border-radius: 50%;
 }
 
 .dropdown-item:hover{
     color: white;
     background-color: rgb(103, 103, 221);
 }
-

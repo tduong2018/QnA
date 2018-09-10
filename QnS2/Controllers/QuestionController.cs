@@ -25,23 +25,24 @@ namespace QnS2.Controllers
         }
 
         [HttpGet("[action]")]
-        public JsonResult GetListQuestion(string title="")
+        public JsonResult GetListQuestion()
         {
             var Questions = new List<Question>();
 
-            Questions = _appDbContext.Questions.Select(n => new Question
+            Questions = _appDbContext.Questions.Where(n => (n.Delete.Equals("True"))).Select(n => new Question
             {
                 UserId = n.UserId,
                 QuestionId = n.QuestionId,
                 AvatarUser = n.User.PictureUrl,
-                UserName = (n.User.FirstName + n.User.LastName),
-                //TopicName = n.TopicName,
+                UserName = n.User.FirstName + " " + n.User.LastName,
+                TopicName = n.Topic.Name,
                 Title = n.Title,
                 ContentQuestion = n.ContentQuestion,
                 TopicID = n.TopicID,
                 CreateDate = n.CreateDate,
-                Delete = n.Delete
-            }).Where(n => (n.Delete.Equals("True") && n.Title.Contains(title))).ToList();
+                Delete = n.Delete,
+                countsAnswer = n.Answers.Count
+            }).ToList();
             return Json(Questions);
         }
 
@@ -49,13 +50,19 @@ namespace QnS2.Controllers
         public JsonResult ListQuestionByUserId()
         {
             var userId = _caller.Claims.Single(c => c.Type == "id");
-            var tmp = (_appDbContext.Questions.Where(c => c.UserId == userId.Value).Select(x => new Question
+            var tmp = (_appDbContext.Questions.Where(n => n.UserId == userId.Value).Select(n => new Question
             {
-                QuestionId = x.QuestionId,
-                Title = x.Title,
-                ContentQuestion = x.ContentQuestion,
-                TopicID = x.TopicID,
-                CreateDate = x.CreateDate
+                UserId = n.UserId,
+                QuestionId = n.QuestionId,
+                AvatarUser = n.User.PictureUrl,
+                UserName = n.User.FirstName + " " + n.User.LastName,
+                TopicName = n.Topic.Name,
+                Title = n.Title,
+                ContentQuestion = n.ContentQuestion,
+                TopicID = n.TopicID,
+                CreateDate = n.CreateDate,
+                Delete = n.Delete,
+                countsAnswer = n.Answers.Count
             }));
             return Json(tmp);
         }

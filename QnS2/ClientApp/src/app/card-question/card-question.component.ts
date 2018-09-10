@@ -1,5 +1,6 @@
+import { CardCommentComponent } from './../card-comment/card-comment.component';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-question',
@@ -9,14 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class CardQuestionComponent implements OnInit {
   public isSetting = false;
   public isCollapsed = false;
-
-  constructor(private http:HttpClient) { }
+  countComment;
+  @Input('userQuestion') Question;
+  constructor() { }
 
   ngOnInit() {
   }
 
-}
-
-interface card{
-  
 }

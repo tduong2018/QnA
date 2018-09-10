@@ -13,6 +13,7 @@ using QnS2.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
 using QnS2.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace QnS2.Controllers
 {

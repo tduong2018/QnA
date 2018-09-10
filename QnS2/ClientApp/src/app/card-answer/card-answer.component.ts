@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardAnswerComponent implements OnInit {
   
-  @Input('cards') card;
+  @Input('userQuestion') Question;
 
   public isCollapsed = false;
 
@@ -15,12 +15,4 @@ export class CardAnswerComponent implements OnInit {
 
   ngOnInit() {}
 
-}
-
-interface card_answer{
-  userId:string;
-  questionId:number;
-  title:string;
-  createDate:Date;
-  contentQuestion:string;
 }

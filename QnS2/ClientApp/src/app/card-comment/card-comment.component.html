@@ -1,12 +1,41 @@
 <div id="card-comment">
   <!--list comment-->
   <ul class="nav flex-column">
-    <li class="nav-item row mb-3 alert alert-info" *ngFor="let item of listAnswer">
-      <img class="img-account" src='https://via.placeholder.com/150/771796' />
-      <div class="ml-2">
-        <span class="text-info small">{{item.user.userName}}<br /></span>
-        <span>{{item.contentAnswer}}</span>
+    
+    <li class="nav-item row mb-3 alert alert-info" *ngFor="let answer of Answers">
+      <div class="=form-inline" style="width: 100%">
+
+        <span *ngIf="answer.AvatarUser!=null; else avatar">
+          <img class="img-account" src='https://via.placeholder.com/150/771796' />
+        </span>
+
+        <ng-template #avatar>
+          <img class="img-account" src='https://via.placeholder.com/150/24f355' />
+        </ng-template>
+
+        <span class="text-info small ml-2">{{answer.userName}}</span>
+
+        <span class="text-info small ml-2">{{answer.createTime}}</span>
+
+        <div class="float-right">
+          <div ngbDropdown>
+            <span class="btn text-success" ngbDropdownToggle placement="bottom" ngbTooltip="settings">
+              <i class="material-icons small">settings</i>
+            </span>
+            <div ngbDropdownMenu style="position: absolute;">
+              <a class="dropdown-item" href="#">Update</a>
+              <a class="dropdown-item" href="#">Delete</a>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      <div class="ml-5">
+        <span>{{answer.contentAnswer}}</span>
+      </div>
+
+
     </li>
   </ul>
 
@@ -16,3 +45,4 @@
     <textarea class="form-control ml-2" rows=1 style="border-radius: 25px; width: 92%" type="text" name="" id=""></textarea>
   </div>
 </div>
+

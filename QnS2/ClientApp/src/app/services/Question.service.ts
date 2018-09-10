@@ -5,8 +5,12 @@ import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Injectable()
-export class CommentService extends DataService{
+export class QuestionService extends DataService{
     constructor(http: HttpClient,spinner: NgxSpinnerService) {
-        super('Comment', http,spinner);
+        super('Question', http,spinner);
+    }
+
+    getCustom(action){
+        return super.get(action);
     }
 }

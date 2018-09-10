@@ -8,14 +8,14 @@ import { CommentService } from '../services/Comment.service';
 })
 export class CardCommentComponent implements OnInit {
 
-  @Input('questionID') questionId; 
+  @Input('questionID') questionId;
+  @Input('comment') comment;
 
-  public listAnswer;
+  public Answers;
 
   constructor(private _comment: CommentService) { }
 
   ngOnInit() {
-    this._comment.get(this.questionId +'').subscribe(data => this.listAnswer = data);
+    this._comment.get(this.questionId + '').subscribe( data => this.Answers = data );
   }
-
 }

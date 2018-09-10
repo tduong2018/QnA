@@ -1,23 +1,8 @@
 <div class="mt-4" style="height: 100%">
     <span class="btn btn-outline-warning nav-link" (click)="CreatQuestion()">New Question</span>
     <ul class="navbar-nav scroll-list-comment">
-        <li class="nav-item pb-3">
-            <app-card-question></app-card-question>
-        </li>
-        <li class="nav-item pb-3">
-            <app-card-question></app-card-question>
-        </li>
-        <li class="nav-item pb-3">
-            <app-card-question></app-card-question>
-        </li>
-        <li class="nav-item pb-3">
-            <app-card-question></app-card-question>
-        </li>
-        <li class="nav-item pb-3">
-            <app-card-question></app-card-question>
-        </li>
-        <li class="nav-item pb-3">
-            <app-card-question></app-card-question>
+        <li class="nav-item pb-3" *ngFor="let question of Questions">
+            <app-card-question [userQuestion]="question"></app-card-question>
         </li>
     </ul>
 </div>

@@ -30,7 +30,7 @@ namespace QnS2.Controllers
         // GET api/dashboard/home
         [HttpGet]
         //[Authorize(Roles = Constants.Strings.JwtClaims.Admin)]
-        public async Task<IActionResult> Home()
+        public async Task<IActionResult> Account()
         {
             // retrieve the user info
             //HttpContext.User
@@ -39,29 +39,12 @@ namespace QnS2.Controllers
 
             return new OkObjectResult(new
             {
-                Message = "This is secure API and user data!",
-                //user.LastName,
-                user.UserName
+                UserID = user.Id,
+                Avatar = user.PictureUrl,
+                Fullname = user.FirstName + " " + user.LastName,
+                UserEmail = user.Email
             });
         }
-
-
-        // GET api/dashboard/question all
-        //[Authorize(Roles = Constants.Strings.JwtClaims.Question)]
-        //[HttpGet]
-        //public async Task<IActionResult> Question()
-        //{
-        //    // retrieve the user info
-        //    //HttpContext.User
-        //    var userId = _caller.Claims.Single(c => c.Type == "id");
-        //    //var user = await _appDbContext.Questions.Where(c => c.IdentityId == userId.Value).ToListAsync();
-
-        //    return new OkObjectResult(user);
-        //}
-        //[HttpGet]
-        public async Task<IActionResult> Question()
-        {
-            return new OkObjectResult("123");
-        }
+        
     }
 }
