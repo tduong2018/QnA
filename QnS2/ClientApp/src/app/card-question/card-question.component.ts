@@ -10,7 +10,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardQuestionComponent implements OnInit {
   public isSetting = false;
   public isCollapsed = false;
-  countComment;
   @Input('userQuestion') Question;
   constructor() { }
 

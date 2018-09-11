@@ -15,7 +15,8 @@ export class QuestionerComponent implements OnInit {
   constructor(private modalService: NgbModal, private _http:HttpClient, private question:QuestionService) { }
 
   ngOnInit() {
-    this.question.getCustom('getListQuestion').subscribe(question => this.Questions = question);
+    this.question.getCustom('ListQuestionByUserId').subscribe(question => this.Questions = question);
+    
   }
 
   public CreatQuestion() {

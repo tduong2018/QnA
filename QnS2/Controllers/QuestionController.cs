@@ -50,7 +50,8 @@ namespace QnS2.Controllers
         public JsonResult ListQuestionByUserId()
         {
             var userId = _caller.Claims.Single(c => c.Type == "id");
-            var tmp = (_appDbContext.Questions.Where(n => n.UserId == userId.Value).Select(n => new Question
+            var Questions = new List<Question>();
+            Questions = _appDbContext.Questions.Where(n => n.UserId == userId.Value).Select(n => new Question
             {
                 UserId = n.UserId,
                 QuestionId = n.QuestionId,
@@ -63,8 +64,8 @@ namespace QnS2.Controllers
                 CreateDate = n.CreateDate,
                 Delete = n.Delete,
                 countsAnswer = n.Answers.Count
-            }));
-            return Json(tmp);
+            }).ToList();
+            return Json(Questions);
         }
 
         [HttpGet("[action]")]

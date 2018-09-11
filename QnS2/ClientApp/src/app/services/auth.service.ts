@@ -67,6 +67,21 @@ export class AuthService {
     return false;
   }
 
+  getRoleName(){
+    let roles: any[] = [];
+    let tmp: any[] = [];
+    if (this.currentUser != null) 
+      roles = this.currentUser.roles;
+    if (roles != null) {
+      if (roles instanceof Array)
+      {
+        return roles
+      }
+      tmp.push(roles);
+      return tmp;
+    }
+  }
+
   register(userRegistration) {
     this.spinner.show();
     let body = JSON.stringify(userRegistration);

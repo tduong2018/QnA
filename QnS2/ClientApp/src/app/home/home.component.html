@@ -6,7 +6,7 @@
         <app-menu></app-menu>
 
         <div style="height: 82%">
-            <div *ngIf="userRoles == 1; else answerPage" style="height: 100%">
+            <div *ngIf="userRoles == role ; else answerPage" style="height: 100%">
                 <app-questioner></app-questioner>
             </div>
 
@@ -15,7 +15,7 @@
             </ng-template>
         </div>
     </div>
-    <div class="col-md-2 main-right bg-warning">
+    <div class="col-md-2 main-right">
 
     </div>
 </div>

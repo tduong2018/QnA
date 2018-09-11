@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { AuthService } from './../services/auth.service';
 import { AuthGuard } from './../auth-guard.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,25 +14,20 @@ export class UserBoxComponent implements OnInit {
 
   public Role: string;
   public Account = <User>{};
-  public RolesAccount = ["Questioner", "Answer"];
-  
+  public RolesAccount: any[] = [];
+
   constructor(private homeComponent: HomeComponent, private _Account: UserService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.Role = this.RolesAccount[0];
+
+    this.Role = "Questioner";
     this._Account.getCustom('Account').subscribe(result => this.Account = result as User);
+    this.RolesAccount = this.authService.getRoleName();
   }
 
   public changeRole(item){
-
-    this.Role = item;
-
-    if(item == this.RolesAccount[1])
-      item = 2;
-    else
-      item = 1;
-
     this.homeComponent.userRoles = item;
+    this.Role = item;
   }
 }
 

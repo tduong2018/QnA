@@ -1,20 +1,13 @@
 <div class="card-questioner">
   <div class="card-header">
     <div class="">
-      
-      <span *ngIf="Question.avatarUser!=null; else avartarNull">
-        <img src='https://via.placeholder.com/150/771796' />
-      </span>
-      <ng-template #avartarNull>
-        <img src='https://via.placeholder.com/150/24f355' />
-      </ng-template>
 
-      <span class="ml-2">{{Question.userName}}</span>
+      <b class="ml-2">{{Question.title}}</b>
       <span class="text-info ml-3 small">{{Question.createDate}}</span>
       <div class="float-right">
         <div ngbDropdown>
           <span class="btn" ngbDropdownToggle placement="bottom" ngbTooltip="settings">
-            <i class="material-icons">...</i>
+            <i class="material-icons small">settings</i>
           </span>
           <div ngbDropdownMenu style="position: absolute;">
             <a class="dropdown-item" href="#">Update</a>

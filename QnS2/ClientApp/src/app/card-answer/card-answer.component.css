@@ -12,3 +12,12 @@
     color: white;
     background-color: rgb(103, 103, 221);
 }
+
+.btn-comment>span{
+    font-size: 13px;
+    color: rgb(112, 134, 112);
+}
+
+.btn-comment>span:hover{
+    color: #97c1f0;
+}

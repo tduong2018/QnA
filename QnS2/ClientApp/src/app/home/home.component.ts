@@ -10,11 +10,13 @@ import { environment } from './../../environments/environment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public userRoles: number;
+  public userRoles: string;
+  public role: string = environment.questioner;
   constructor(private authService: AuthService, private router:Router) { }
   
   public ngOnInit(){
-    this.userRoles = 1;
+    this.userRoles = environment.questioner;
+    console.log(this.userRoles);
     if(!this.authService.isLoggedIn()) this.router.navigate(['/login']);  
     if(this.authService.hasRole(environment.admin)) this.router.navigate(['/admin']);
   }

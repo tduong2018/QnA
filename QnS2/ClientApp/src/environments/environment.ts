@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   admin: "Admin",
+  questioner:"Questioner",
+  answer:"Answer",
   baseUrl: 'http://localhost:61759/api'
 };
 
