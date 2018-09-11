@@ -1,17 +1,11 @@
 <div id="card-comment">
   <!--list comment-->
   <ul class="nav flex-column">
-    
+
     <li class="nav-item row mb-3 alert alert-info" *ngFor="let answer of Answers">
       <div class="=form-inline" style="width: 100%">
 
-        <span *ngIf="answer.AvatarUser!=null; else avatar">
-          <img class="img-account" src='https://via.placeholder.com/150/771796' />
-        </span>
-
-        <ng-template #avatar>
-          <img class="img-account" src='https://via.placeholder.com/150/24f355' />
-        </ng-template>
+        <img class="img-account" [src]="answer.avatarUser" />
 
         <span class="text-info small ml-2">{{answer.userName}}</span>
 
@@ -41,8 +35,10 @@
 
   <!--to comment-->
   <div class="row alert">
-    <img class="img-account" src='https://via.placeholder.com/150/771796' />
-    <textarea class="form-control ml-2" rows=1 style="border-radius: 25px; width: 92%" type="text" name="" id=""></textarea>
+    <img class="img-account" [src]="Account.avatar" />
+    <textarea class="form-control ml-2" rows=1 style="border-radius: 25px; width: 92%" type="text" name="" id=""
+      [(ngModel)]="comments">{{comments}}
+    </textarea>
   </div>
+  <span class="btn" (click)="postComment(comments)">Reply</span>
 </div>
-
