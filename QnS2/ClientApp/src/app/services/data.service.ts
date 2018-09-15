@@ -60,11 +60,6 @@ export class DataService {
         
         map(response => response),
         catchError(
-          /*           (error:Response) => {
-                      if (error.status == 404)
-                        return throwError(new NotFoundError(error.json()));
-                      return throwError(new AppError(error));
-                    }) */
           this.HandleError
         ));
   }

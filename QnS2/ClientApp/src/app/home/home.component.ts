@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   
   public ngOnInit(){
     this.userRoles = environment.questioner;
-    console.log(this.userRoles);
     if(!this.authService.isLoggedIn()) this.router.navigate(['/login']);  
     if(this.authService.hasRole(environment.admin)) this.router.navigate(['/admin']);
   }

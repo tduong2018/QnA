@@ -1,37 +1,33 @@
 <div class="card-questioner">
-    <div class="card-header">
-      <div class="">
-        
-        <span *ngIf="Question.avatarUser!=null; else avartarNull">
-          <img src='https://via.placeholder.com/150/771796' />
-        </span>
-        <ng-template #avartarNull>
-          <img src='https://via.placeholder.com/150/24f355' />
-        </ng-template>
-  
-        <span class="ml-2">{{Question.userName}}</span>
-        <span class="text-info ml-3 small">{{Question.createDate}}</span>
-        <div class="float-right">
-          <div ngbDropdown>
-            <span class="btn" ngbDropdownToggle placement="bottom" ngbTooltip="settings">
-              <i class="material-icons small">settings</i>
-            </span>
-            <div ngbDropdownMenu style="position: absolute;">
-              <a class="dropdown-item" href="#">Update</a>
-              <a class="dropdown-item" href="#">Delete</a>
-            </div>
+  <div class="card-header">
+    <div class="">
+
+      <img [src]= "Question.avatarUser"/>
+
+      <span class="ml-2">{{Question.userName}}</span>
+      <span class="text-info ml-3 small">{{Question.createDate}}</span>
+      <div class="float-right">
+        <div ngbDropdown>
+          <span class="btn" ngbDropdownToggle placement="bottom" ngbTooltip="settings">
+            <i class="material-icons small">settings</i>
+          </span>
+          <div ngbDropdownMenu style="position: absolute;">
+            <a class="dropdown-item" href="#">Update</a>
+            <a class="dropdown-item" href="#">Delete</a>
           </div>
         </div>
-        <div class="ml-5">
-          <span>{{Question.contentQuestion}}</span>
-        </div>
-        <div class="text-right mt-3 btn-comment">
-          <span (click)="isCollapsed = !isCollapsed" class="btn ">Comment<span> ({{Question.countsAnswer}})</span></span>
-        </div>
+      </div>
+      <div class="ml-5">
+        <span>{{Question.contentQuestion}}</span>
+      </div>
+      <div class="text-right mt-3 btn-comment">
+        <span (click)="isCollapsed = !isCollapsed" class="btn ">Comment<span> ({{Question.countsAnswer}})</span></span>
       </div>
     </div>
-  
-    <!--commet collapsed-->
-    <div class="card-body" *ngIf="isCollapsed">
-      <app-card-comment [questionID]="Question.questionId"></app-card-comment>
   </div>
+
+  <!--commet collapsed-->
+  <div class="card-body" *ngIf="isCollapsed">
+    <app-card-comment [questionID]="Question.questionId"></app-card-comment>
+  </div>
+</div>

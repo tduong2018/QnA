@@ -12,7 +12,7 @@ export class CardCommentComponent implements OnInit {
   @Input('questionID') questionId;
   @Input('comment') comment;
   public comments = "";
-  public Account :User[] = [];
+  public Account = <User[]>{};
 
   public Answers;
 
@@ -28,7 +28,6 @@ export class CardCommentComponent implements OnInit {
   }
 
   postComment(){
-    //console.log(this.comments);
     let input : Comment = { QuestionId: this.questionId,ContentAnswer:this.comments };
     this._comment.create(input).subscribe(()=>{this.get()});
     this.comments="";
