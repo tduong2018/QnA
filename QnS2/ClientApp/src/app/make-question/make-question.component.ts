@@ -34,7 +34,6 @@ export class MakeQuestionComponent implements OnInit {
   public saveSubmit(ObjectQuestion){
     
     this.ObjectQuestion = ObjectQuestion.value;
-
     this.activeModal.close();
     
   }

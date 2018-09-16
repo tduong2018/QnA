@@ -24,7 +24,8 @@ namespace QnS2.Controllers
             _appDbContext = appDbContext;
         }
 
-        [HttpGet("[action]")]
+        //get all questions
+        [HttpGet]
         public JsonResult GetListQuestion()
         {
             var Questions = new List<Question>();
@@ -46,6 +47,7 @@ namespace QnS2.Controllers
             return Json(Questions);
         }
 
+        //get question by account
         [HttpGet("[action]")]
         public JsonResult ListQuestionByUserId()
         {
@@ -68,70 +70,64 @@ namespace QnS2.Controllers
             return Json(Questions);
         }
 
-        [HttpGet("[action]")]
-        public JsonResult GetQuestion(int questionId = 1)
+        [HttpGet("{userId}", Name="GetQuestion")]
+        public JsonResult GetQuestionByUserId(string userId)
         {
-            return Json(_appDbContext.Questions.Where(c => c.QuestionId == questionId).Select(x=> new Question {
-                QuestionId= x.QuestionId,
-                Title = x.Title,
-                TopicID = x.TopicID,
-                ContentQuestion = x.ContentQuestion,
-                CreateDate = x.CreateDate
-            }));
+            List<Question> question = _appDbContext.Questions.Where(n => n.UserId == userId).Select(n => new Question
+            {
+                UserId = n.UserId,
+                QuestionId = n.QuestionId,
+                AvatarUser = n.User.PictureUrl,
+                UserName = n.User.FirstName + " " + n.User.LastName,
+                TopicName = n.Topic.Name,
+                Title = n.Title,
+                ContentQuestion = n.ContentQuestion,
+                TopicID = n.TopicID,
+                CreateDate = n.CreateDate,
+                Delete = n.Delete,
+                countsAnswer = n.Answers.Count
+            }).ToList();
+            return Json(question);
         }
 
+        //create question 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]CreateQuestionViewModel model)
+        public IActionResult CreateQuestion(Question QuestionClient)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            Question _ques = new Question();
-            _ques.UserId = (_caller.Claims.Single(c => c.Type == "id")).Value;  
-            _ques.Title = model.Title;
-            _ques.TopicID = model.TopicID;
-            _ques.ContentQuestion = model.ContentQuestion;
-            _ques.CreateDate = model.CreateDate;
-            _ques.Delete = model.Delete;
-            _appDbContext.Questions.Add(_ques);
-            var result = await _appDbContext.SaveChangesAsync();
-            return new OkObjectResult(new
-            {
-                Message = "Created!",
-            });
+            _appDbContext.Questions.Add(QuestionClient);
+            _appDbContext.SaveChangesAsync();
+            return NoContent();
         }
 
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Update([FromBody]CreateQuestionViewModel model)
+        [HttpPut("{id}")]
+        public IActionResult UpdateQuestion(int id, Question QuestionClient)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+            Question QuestionServe = _appDbContext.Questions.Find(id);
+            if(QuestionServe == null){
+                return NotFound();
             }
-            var _ques = _appDbContext.Questions.Find(model.QuestionId);
-            _ques.Title = model.Title;
-            _ques.TopicID = model.TopicID;
-            _ques.ContentQuestion = model.ContentQuestion;
-            _ques.Delete = model.Delete;
-            _appDbContext.Questions.Update(_ques);
-            var result = await _appDbContext.SaveChangesAsync();
-            return new OkObjectResult(new
-            {
-                Message = "Updated!",
-            });
+            QuestionServe.Title = QuestionClient.Title;
+            QuestionServe.ContentQuestion = QuestionClient.ContentQuestion;
+            QuestionServe.UserId = QuestionClient.UserId;
+            QuestionServe.TopicID = QuestionClient.TopicID;
+            QuestionServe.CreateDate = DateTime.Now;
+            QuestionServe.Delete = "True";
+            _appDbContext.Questions.Update(QuestionServe);
+            _appDbContext.SaveChangesAsync();
+            return NoContent();
         }
 
-        [HttpDelete("[action]")]
-        public async Task<ActionResult> DeleteQuestion(int questionId)
+        //delete question
+        [HttpDelete("{QuestionId}")]
+        public IActionResult DeleteQuestion(int QuestionId)
         {
-            var _ques = _appDbContext.Questions.Find(questionId);
-            _appDbContext.Questions.Remove(_ques);
-            var resuit = await _appDbContext.SaveChangesAsync();
-            return new OkObjectResult(new
-            {
-                Message = "Deleted!",
-            });
+            Question question = _appDbContext.Questions.Find(QuestionId);
+            if(question == null){
+                return NotFound();
+            }
+            _appDbContext.Questions.Remove(question);
+            _appDbContext.SaveChangesAsync();
+            return NoContent();
         }
     }
 }

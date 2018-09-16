@@ -727,7 +727,7 @@ var AnswerComponent = /** @class */ (function () {
     }
     AnswerComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.question.getCustom('getListQuestion').subscribe(function (question) { return _this.Questions = question; });
+        this.question.getAll().subscribe(function (question) { return _this.Questions = question; });
     };
     AnswerComponent.prototype.CreatQuestion = function () {
         this.modalService.open(_make_question_make_question_component__WEBPACK_IMPORTED_MODULE_3__["MakeQuestionComponent"]);
@@ -1966,11 +1966,11 @@ module.exports = "<div class=\"mt-4\" style=\"height: 100%\">\r\n    <span class
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuestionerComponent", function() { return QuestionerComponent; });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _make_question_make_question_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../make-question/make-question.component */ "./src/app/make-question/make-question.component.ts");
-/* harmony import */ var _services_Question_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/Question.service */ "./src/app/services/Question.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _make_question_make_question_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../make-question/make-question.component */ "./src/app/make-question/make-question.component.ts");
+/* harmony import */ var _services_Question_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/Question.service */ "./src/app/services/Question.service.ts");
+/* harmony import */ var _services_User_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/User.service */ "./src/app/services/User.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1986,25 +1986,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var QuestionerComponent = /** @class */ (function () {
-    function QuestionerComponent(modalService, _http, question) {
-        this.modalService = modalService;
-        this._http = _http;
-        this.question = question;
+    function QuestionerComponent(_modalService, _Account, _question) {
+        this._modalService = _modalService;
+        this._Account = _Account;
+        this._question = _question;
     }
     QuestionerComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.question.getCustom('ListQuestionByUserId').subscribe(function (question) { return _this.Questions = question; });
+        this._question.getCustom('ListQuestionByUserId').subscribe(function (question) { return _this.Questions = question; });
     };
     QuestionerComponent.prototype.CreatQuestion = function () {
-        this.modalService.open(_make_question_make_question_component__WEBPACK_IMPORTED_MODULE_3__["MakeQuestionComponent"]);
+        this._modalService.open(_make_question_make_question_component__WEBPACK_IMPORTED_MODULE_2__["MakeQuestionComponent"]);
     };
     QuestionerComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-questioner',
             template: __webpack_require__(/*! ./questioner.component.html */ "./src/app/questioner/questioner.component.html"),
             styles: [__webpack_require__(/*! ./questioner.component.css */ "./src/app/questioner/questioner.component.css")]
         }),
-        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _services_Question_service__WEBPACK_IMPORTED_MODULE_4__["QuestionService"]])
+        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbModal"], _services_User_service__WEBPACK_IMPORTED_MODULE_4__["UserService"], _services_Question_service__WEBPACK_IMPORTED_MODULE_3__["QuestionService"]])
     ], QuestionerComponent);
     return QuestionerComponent;
 }());
@@ -2694,7 +2694,7 @@ module.exports = ".account img{\r\n    height: 60px;\r\n    width: 60px;\r\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"account text-center mt-4\">\r\n  <div class=\"form-group\">\r\n    \r\n    <span *ngIf=\"Account.avatar == null; else imageAccount\">\r\n      <img class=\"img-account\" src=\"\" />\r\n    </span>\r\n    <ng-template #imageAccount>\r\n      <img [src]=\"Account.avatar\" alt=\"\">\r\n    </ng-template>\r\n\r\n    <p>{{Account.fullname}}</p>\r\n  </div>\r\n  <div ngbDropdown class=\"form-group\">\r\n    <span class=\"btn\" id=\"dropdownBasic1\" ngbDropdownToggle>\r\n      <span>{{Role}}</span>\r\n    </span>\r\n    <div ngbDropdownMenu style=\"position: absolute\">\r\n      <button class=\"dropdown-item btn\" *ngFor=\"let item of RolesAccount\" (click)=\"changeRole(item)\">{{item}}</button>\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group form-inline justify-content-center\">\r\n    <button class=\"btn\" (click)=\"_authService.logout()\">\r\n      Log Out\r\n    </button>\r\n    <i class=\"material-icons\">\r\n      exit_to_app\r\n    </i>\r\n  </div>\r\n</form>"
+module.exports = "<form class=\"account text-center mt-4\">\r\n  <div class=\"form-group\">\r\n\r\n    <span *ngIf=\"Account.avatar == null; else imageAccount\">\r\n      <img class=\"img-account\" src=\"\" />\r\n    </span>\r\n    <ng-template #imageAccount>\r\n      <img [src]=\"Account.avatar\" alt=\"\">\r\n    </ng-template>\r\n\r\n    <p>{{Account.fullname}}</p>\r\n  </div>\r\n  <div ngbDropdown class=\"form-group\">\r\n    <span class=\"btn\" id=\"dropdownBasic1\" ngbDropdownToggle>\r\n      <span>{{Role}}</span>\r\n    </span>\r\n    <div ngbDropdownMenu style=\"position: absolute\">\r\n      <button class=\"dropdown-item btn\" *ngFor=\"let item of RolesAccount\" (click)=\"changeRole(item)\">{{item}}</button>\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group form-inline justify-content-center\">\r\n    <button class=\"btn\" (click)=\"_authService.logout()\">\r\n      Log Out\r\n    </button>\r\n    <i class=\"material-icons\">\r\n      exit_to_app\r\n    </i>\r\n  </div>\r\n</form>"
 
 /***/ }),
 
@@ -2712,7 +2712,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _services_User_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/User.service */ "./src/app/services/User.service.ts");
-/* harmony import */ var _card_comment_card_comment_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../card-comment/card-comment.component */ "./src/app/card-comment/card-comment.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2722,7 +2721,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -2740,7 +2738,6 @@ var UserBoxComponent = /** @class */ (function () {
         this.Role = "Questioner";
         this._Account.getCustom('Account').subscribe(function (result) { return _this.Account = result; });
         this.RolesAccount = this._authService.getRoleName();
-        var ngAtive = _card_comment_card_comment_component__WEBPACK_IMPORTED_MODULE_4__["CardCommentComponent"];
     };
     UserBoxComponent.prototype.changeRole = function (item) {
         this._homeComponent.userRoles = item;

@@ -1,10 +1,7 @@
-import { environment } from './../../environments/environment';
 import { AuthService } from './../services/auth.service';
-import { AuthGuard } from './../auth-guard.service';
 import { Component, OnInit } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
 import { UserService } from '../services/User.service';
-import { CardCommentComponent } from '../card-comment/card-comment.component';
 
 @Component({
   selector: 'app-user-box',
@@ -20,11 +17,9 @@ export class UserBoxComponent implements OnInit {
   constructor(private _homeComponent: HomeComponent, private _Account: UserService, private _authService: AuthService) { }
 
   ngOnInit() {
-
     this.Role = "Questioner";
     this._Account.getCustom('Account').subscribe(result => this.Account = result as User);
     this.RolesAccount = this._authService.getRoleName();
-    let ngAtive = CardCommentComponent;
   }
 
   public changeRole(item){

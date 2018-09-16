@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MakeQuestionComponent } from '../make-question/make-question.component';
 import { QuestionService } from '../services/Question.service';
+import { UserService } from '../services/User.service';
 
 @Component({
   selector: 'app-questioner',
@@ -10,16 +10,15 @@ import { QuestionService } from '../services/Question.service';
   styleUrls: ['./questioner.component.css']
 })
 export class QuestionerComponent implements OnInit {
-
   public Questions : any ;
-  constructor(private modalService: NgbModal, private _http:HttpClient, private question:QuestionService) { }
+  public m:MakeQuestionComponent;
+  constructor(private _modalService: NgbModal, private _Account: UserService, private _question:QuestionService) { }
 
   ngOnInit() {
-    this.question.getCustom('ListQuestionByUserId').subscribe(question => this.Questions = question);
-    
+    this._question.getCustom('ListQuestionByUserId').subscribe(question => this.Questions = question);
   }
 
   public CreatQuestion() {
-    this.modalService.open(MakeQuestionComponent);
+    this._modalService.open(MakeQuestionComponent);
   }
 }
