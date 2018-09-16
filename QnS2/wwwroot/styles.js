@@ -621,9 +621,9 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\hntlk\Desktop\QnA\QnS2\ClientApp\src\styles.css */"./src/styles.css");
-__webpack_require__(/*! C:\Users\hntlk\Desktop\QnA\QnS2\ClientApp\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
-module.exports = __webpack_require__(/*! C:\Users\hntlk\Desktop\QnA\QnS2\ClientApp\node_modules\ngx-toastr\toastr.css */"./node_modules/ngx-toastr/toastr.css");
+__webpack_require__(/*! E:\QnA\QnS2\ClientApp\src\styles.css */"./src/styles.css");
+__webpack_require__(/*! E:\QnA\QnS2\ClientApp\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+module.exports = __webpack_require__(/*! E:\QnA\QnS2\ClientApp\node_modules\ngx-toastr\toastr.css */"./node_modules/ngx-toastr/toastr.css");
 
 
 /***/ })

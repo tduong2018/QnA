@@ -13364,11 +13364,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lopch\\OneDrive\\Máy tính\\QnA\\QnS2\\QnS2.csproj",
+      "projectUniqueName": "E:\\QnA\\QnS2\\QnS2.csproj",
       "projectName": "QnS2",
-      "projectPath": "C:\\Users\\lopch\\OneDrive\\Máy tính\\QnA\\QnS2\\QnS2.csproj",
+      "projectPath": "E:\\QnA\\QnS2\\QnS2.csproj",
       "packagesPath": "C:\\Users\\lopch\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lopch\\OneDrive\\Máy tính\\QnA\\QnS2\\obj\\",
+      "outputPath": "E:\\QnA\\QnS2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

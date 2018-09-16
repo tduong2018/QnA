@@ -686,7 +686,7 @@ module.exports = ".scroll-list-comment{\r\n    overflow-y: scroll; \r\n    heigh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mt-4\" style=\"height: 100%\">\r\n  <ul class=\"navbar-nav scroll-list-comment\">\r\n    <li class=\"nav-item pb-3\" *ngFor=\"let card of cards_answer\">\r\n      <app-card-answer [cards]=\"card\"></app-card-answer>\r\n    </li>\r\n  </ul>\r\n</div>"
+module.exports = "<div class=\"mt-4\" style=\"height: 100%\">\r\n  <ul class=\"navbar-nav scroll-list-comment\">\r\n    <li class=\"nav-item pb-3\" *ngFor=\"let question of Questions\">\r\n      <app-card-answer [userQuestion]=\"question\"></app-card-answer>\r\n    </li>\r\n  </ul>\r\n</div>"
 
 /***/ }),
 
@@ -700,8 +700,11 @@ module.exports = "<div class=\"mt-4\" style=\"height: 100%\">\r\n  <ul class=\"n
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnswerComponent", function() { return AnswerComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_Anwser_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/Anwser.service */ "./src/app/services/Anwser.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _make_question_make_question_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../make-question/make-question.component */ "./src/app/make-question/make-question.component.ts");
+/* harmony import */ var _services_Question_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/Question.service */ "./src/app/services/Question.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -713,21 +716,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var AnswerComponent = /** @class */ (function () {
-    function AnswerComponent(_anwser) {
-        this._anwser = _anwser;
+    function AnswerComponent(modalService, _http, question) {
+        this.modalService = modalService;
+        this._http = _http;
+        this.question = question;
     }
     AnswerComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._anwser.get('74d2c91b-2bdf-4f5b-b9c6-d6a2bd2fd1fd').subscribe(function (card) { return _this.cards_answer = card; });
+        this.question.getCustom('getListQuestion').subscribe(function (question) { return _this.Questions = question; });
+    };
+    AnswerComponent.prototype.CreatQuestion = function () {
+        this.modalService.open(_make_question_make_question_component__WEBPACK_IMPORTED_MODULE_3__["MakeQuestionComponent"]);
     };
     AnswerComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-answer',
             template: __webpack_require__(/*! ./answer.component.html */ "./src/app/answer/answer.component.html"),
             styles: [__webpack_require__(/*! ./answer.component.css */ "./src/app/answer/answer.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_Anwser_service__WEBPACK_IMPORTED_MODULE_1__["AnwserService"]])
+        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _services_Question_service__WEBPACK_IMPORTED_MODULE_4__["QuestionService"]])
     ], AnswerComponent);
     return AnswerComponent;
 }());
@@ -863,12 +874,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+/* harmony import */ var _services_Question_service__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./services/Question.service */ "./src/app/services/Question.service.ts");
+/* harmony import */ var _services_User_service__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./services/User.service */ "./src/app/services/User.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1020,9 +1035,11 @@ var AppModule = /** @class */ (function () {
                 _admin_auth_guard_service__WEBPACK_IMPORTED_MODULE_5__["AdminAuthGuard"],
                 _services_role_service__WEBPACK_IMPORTED_MODULE_24__["RoleService"],
                 _services_admin_user_service__WEBPACK_IMPORTED_MODULE_0__["AdminUserService"],
+                _services_User_service__WEBPACK_IMPORTED_MODULE_39__["UserService"],
                 _services_Anwser_service__WEBPACK_IMPORTED_MODULE_33__["AnwserService"],
                 _services_Comment_service__WEBPACK_IMPORTED_MODULE_34__["CommentService"],
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"],
+                _services_Question_service__WEBPACK_IMPORTED_MODULE_38__["QuestionService"],
                 { provide: _angular_core__WEBPACK_IMPORTED_MODULE_9__["ErrorHandler"], useClass: _common_app_error_handler__WEBPACK_IMPORTED_MODULE_20__["AppErrorHandler"] }
             ],
             entryComponents: [_admin_userrole_userrole_component__WEBPACK_IMPORTED_MODULE_27__["UserroleComponent"]],
@@ -1091,7 +1108,7 @@ var AuthGuard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card-answer{\r\n    border: 1px solid rgba(0,0,0,.125);\r\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;\r\n}\r\n\r\n.dropdown-item:hover{\r\n    color: white;\r\n    background-color: rgb(103, 103, 221);\r\n}\r\n\r\n"
+module.exports = ".card-questioner{\r\n    border: 1px solid rgba(0,0,0,.125);\r\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;\r\n}\r\n.card-questioner img{\r\n    height: 40px; \r\n    width: 40px; \r\n    border-radius: 50%;\r\n}\r\n.dropdown-item:hover{\r\n    color: white;\r\n    background-color: rgb(103, 103, 221);\r\n}\r\n.btn-comment>span{\r\n    font-size: 13px;\r\n    color: rgb(112, 134, 112);\r\n}\r\n.btn-comment>span:hover{\r\n    color: #97c1f0;\r\n}"
 
 /***/ }),
 
@@ -1102,7 +1119,7 @@ module.exports = ".card-answer{\r\n    border: 1px solid rgba(0,0,0,.125);\r\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-answer\">\r\n  <div class=\"card-header\">\r\n    <div class=\"\">\r\n      <b class=\"ml-2\">{{card.title}}</b>\r\n      <span class=\"text-info ml-3 small\">{{card.createDate}}</span>\r\n      <div class=\"float-right\">\r\n        <div ngbDropdown>\r\n          <span class=\"btn\" ngbDropdownToggle placement=\"bottom\" ngbTooltip=\"settings\">\r\n            <i class=\"material-icons\">...</i>\r\n          </span>\r\n          <div ngbDropdownMenu style=\"position: absolute;\">\r\n            <a class=\"dropdown-item\" href=\"#\">Update</a>\r\n            <a class=\"dropdown-item\" href=\"#\">Delete</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"ml-5\">\r\n        <span>{{card.contentQuestion}}</span>\r\n      </div>\r\n      <div class=\"small text-right mt-3\">\r\n        <a (click)=\"isCollapsed = !isCollapsed\" class=\"btn\"><span>(22)</span>Comment</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n <!--commet collapsed-->\r\n  <div class=\"card-body\" *ngIf=\"isCollapsed\">\r\n    <app-card-comment [questionID]=\"card.questionId\"></app-card-comment>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"card-questioner\">\r\n  <div class=\"card-header\">\r\n    <div class=\"\">\r\n\r\n      <img [src]= \"Question.avatarUser\"/>\r\n\r\n      <span class=\"ml-2\">{{Question.userName}}</span>\r\n      <span class=\"text-info ml-3 small\">{{Question.createDate}}</span>\r\n      <div class=\"float-right\">\r\n        <div ngbDropdown>\r\n          <span class=\"btn\" ngbDropdownToggle placement=\"bottom\" ngbTooltip=\"settings\">\r\n            <i class=\"material-icons small\">settings</i>\r\n          </span>\r\n          <div ngbDropdownMenu style=\"position: absolute;\">\r\n            <a class=\"dropdown-item\" href=\"#\">Update</a>\r\n            <a class=\"dropdown-item\" href=\"#\">Delete</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"ml-5\">\r\n        <span>{{Question.contentQuestion}}</span>\r\n      </div>\r\n      <div class=\"text-right mt-3 btn-comment\">\r\n        <span (click)=\"isCollapsed = !isCollapsed\" class=\"btn \">Comment<span> ({{Question.countsAnswer}})</span></span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <!--commet collapsed-->\r\n  <div class=\"card-body\" *ngIf=\"isCollapsed\">\r\n    <app-card-comment [questionID]=\"Question.questionId\"></app-card-comment>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1133,9 +1150,9 @@ var CardAnswerComponent = /** @class */ (function () {
     }
     CardAnswerComponent.prototype.ngOnInit = function () { };
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('cards'),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('userQuestion'),
         __metadata("design:type", Object)
-    ], CardAnswerComponent.prototype, "card", void 0);
+    ], CardAnswerComponent.prototype, "Question", void 0);
     CardAnswerComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-card-answer',
@@ -1158,7 +1175,7 @@ var CardAnswerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".img-account{\r\n    height: 40px; \r\n    width: 40px; \r\n    border-radius: 50%;\r\n}"
+module.exports = ".img-account{\r\n    height: 40px; \r\n    width: 40px; \r\n    border-radius: 50%;\r\n}\r\n\r\n.Controlcomment{\r\n    overflow:hidden;\r\n}"
 
 /***/ }),
 
@@ -1169,7 +1186,7 @@ module.exports = ".img-account{\r\n    height: 40px; \r\n    width: 40px; \r\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"card-comment\">\r\n  <!--list comment-->\r\n  <ul class=\"nav flex-column\">\r\n    <li class=\"nav-item row mb-3 alert alert-info\" *ngFor=\"let item of listAnswer\">\r\n      <img class=\"img-account\" src='https://via.placeholder.com/150/771796' />\r\n      <div class=\"ml-2\">\r\n        <span class=\"text-info small\">{{item.user.userName}}<br /></span>\r\n        <span>{{item.contentAnswer}}</span>\r\n      </div>\r\n    </li>\r\n  </ul>\r\n\r\n  <!--to comment-->\r\n  <div class=\"row alert\">\r\n    <img class=\"img-account\" src='https://via.placeholder.com/150/771796' />\r\n    <textarea class=\"form-control ml-2\" rows=1 style=\"border-radius: 25px; width: 92%\" type=\"text\" name=\"\" id=\"\"></textarea>\r\n  </div>\r\n</div>"
+module.exports = "<div id=\"card-comment\">\r\n  <!--list comment-->\r\n  <ul class=\"nav flex-column\">\r\n\r\n    <li class=\"nav-item row mb-3 alert alert-info\" *ngFor=\"let answer of Answers\">\r\n      <div class=\"=form-inline\" style=\"width: 100%\">\r\n\r\n        <img class=\"img-account\" [src]=\"answer.avatarUser\" />\r\n\r\n        <span class=\"text-info small ml-2\">{{answer.userName}}</span>\r\n\r\n        <span class=\"text-info small ml-2\">{{answer.createTime}}</span>\r\n\r\n        <div class=\"float-right\">\r\n          <div ngbDropdown>\r\n            <span class=\"btn text-success\" ngbDropdownToggle placement=\"bottom\" ngbTooltip=\"settings\">\r\n              <i class=\"material-icons small\">settings</i>\r\n            </span>\r\n            <div ngbDropdownMenu style=\"position: absolute;\">\r\n              <a class=\"dropdown-item\" href=\"#\">Update</a>\r\n              <a class=\"dropdown-item\" href=\"#\">Delete</a>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n      </div>\r\n\r\n      <div class=\"ml-5\">\r\n        <span>{{answer.contentAnswer}}</span>\r\n      </div>\r\n\r\n\r\n    </li>\r\n  </ul>\r\n\r\n  <!--to comment-->\r\n  <div class=\"row alert\">\r\n    <span *ngIf=\"Account.avatar == null; else imageAccount\">\r\n        <img class=\"img-account\" src=\"\" />\r\n    </span>\r\n    <ng-template #imageAccount>\r\n        <img class=\"img-account\" [src]=\"Account.avatar\" />\r\n    </ng-template>\r\n    \r\n    <textarea class=\"form-control ml-2 Controlcomment\" rows=2 style=\"border-radius: 25px; width: 92%\" type=\"text\" name=\"\" id=\"\"\r\n      [(ngModel)]=\"comments\"\r\n      (keydown.enter)=\"postComment()\">\r\n      {{comments}}\r\n    </textarea>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1185,6 +1202,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardCommentComponent", function() { return CardCommentComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_Comment_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/Comment.service */ "./src/app/services/Comment.service.ts");
+/* harmony import */ var _services_User_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/User.service */ "./src/app/services/User.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1196,25 +1214,44 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var CardCommentComponent = /** @class */ (function () {
-    function CardCommentComponent(_comment) {
+    function CardCommentComponent(_comment, _Account) {
         this._comment = _comment;
+        this._Account = _Account;
+        this.comments = "";
+        this.Account = {};
     }
     CardCommentComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._comment.get(this.questionId + '').subscribe(function (data) { return _this.listAnswer = data; });
+        this._Account.getCustom('Account').subscribe(function (result) { return _this.Account = result; });
+        this.get();
+    };
+    CardCommentComponent.prototype.get = function () {
+        var _this = this;
+        this._comment.get(this.questionId + '').subscribe(function (data) { return _this.Answers = data; });
+    };
+    CardCommentComponent.prototype.postComment = function () {
+        var _this = this;
+        var input = { QuestionId: this.questionId, ContentAnswer: this.comments };
+        this._comment.create(input).subscribe(function () { _this.get(); });
+        this.comments = "";
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('questionID'),
         __metadata("design:type", Object)
     ], CardCommentComponent.prototype, "questionId", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('comment'),
+        __metadata("design:type", Object)
+    ], CardCommentComponent.prototype, "comment", void 0);
     CardCommentComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-card-comment',
             template: __webpack_require__(/*! ./card-comment.component.html */ "./src/app/card-comment/card-comment.component.html"),
             styles: [__webpack_require__(/*! ./card-comment.component.css */ "./src/app/card-comment/card-comment.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_Comment_service__WEBPACK_IMPORTED_MODULE_1__["CommentService"]])
+        __metadata("design:paramtypes", [_services_Comment_service__WEBPACK_IMPORTED_MODULE_1__["CommentService"], _services_User_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], CardCommentComponent);
     return CardCommentComponent;
 }());
@@ -1230,7 +1267,7 @@ var CardCommentComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card-questioner{\r\n    border: 1px solid rgba(0,0,0,.125);\r\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;\r\n}\r\n.card-questioner img{\r\n    height: 40px; \r\n    width: 40px; \r\n    border-radius: 50%;\r\n}\r\n.dropdown-item:hover{\r\n    color: white;\r\n    background-color: rgb(103, 103, 221);\r\n}"
+module.exports = ".card-questioner{\r\n    border: 1px solid rgba(0,0,0,.125);\r\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;\r\n}\r\n.card-questioner img{\r\n    height: 40px; \r\n    width: 40px; \r\n    border-radius: 50%;\r\n}\r\n.dropdown-item:hover{\r\n    color: #ffffff;\r\n    background-color: rgb(103, 103, 221);\r\n}\r\n.btn-comment>span{\r\n    font-size: 13px;\r\n    color: rgb(112, 134, 112);\r\n}\r\n.btn-comment>span:hover{\r\n    color: #97c1f0;\r\n}"
 
 /***/ }),
 
@@ -1241,7 +1278,7 @@ module.exports = ".card-questioner{\r\n    border: 1px solid rgba(0,0,0,.125);\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-questioner\">\r\n  <div class=\"card-header\">\r\n    <div class=\"\">\r\n      <img src='https://via.placeholder.com/150/771796' />\r\n      <span class=\"ml-2\">Trần Dưỡng</span>\r\n      <span class=\"text-info ml-3 small\">(just now)</span>\r\n      <div class=\"float-right\">\r\n        <div ngbDropdown>\r\n          <span class=\"btn\" ngbDropdownToggle placement=\"bottom\" ngbTooltip=\"settings\">\r\n            <i class=\"material-icons\">...</i>\r\n          </span>\r\n          <div ngbDropdownMenu style=\"position: absolute;\">\r\n            <a class=\"dropdown-item\" href=\"#\">Update</a>\r\n            <a class=\"dropdown-item\" href=\"#\">Delete</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"ml-5\">\r\n        <span>why sky is blue?</span>\r\n      </div>\r\n      <div class=\"small text-right mt-3\">\r\n        <a (click)=\"isCollapsed = !isCollapsed\" class=\"btn\"><span>(22)</span>Comment</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n <!--commet collapsed-->\r\n  <div class=\"card-body\" *ngIf=\"isCollapsed\">\r\n    <div id=\"collapseExample\">\r\n      <!--list comment-->\r\n      <ul class=\"nav flex-column\">\r\n        <li class=\"nav-item row mb-3 alert alert-info\">\r\n          <img src='https://via.placeholder.com/150/771796' class=\"bg-primary\" />\r\n          <div class=\"ml-2\">\r\n            <span class=\"text-info small\">trần Dưỡng<br /></span>\r\n            <span>because you craze =)) <br /> dsadasd ádas<br />đấ</span>\r\n          </div>\r\n        </li>\r\n        <li class=\"nav-item row mb-3 alert alert-info\">\r\n          <img src='https://via.placeholder.com/150/771796' />\r\n          <div class=\"ml-2\">\r\n            <span class=\"text-info small\">trần Dưỡng<br /></span>\r\n            <span>because it is blue :))</span>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n\r\n      <!--to comment-->\r\n      <div class=\"row alert\">\r\n        <img src='https://via.placeholder.com/150/771796' />\r\n        <textarea class=\"form-control ml-2\" rows=1 style=\"border-radius: 25px; width: 92%\" type=\"text\" name=\"\" id=\"\"></textarea>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"card-questioner\">\r\n  <div class=\"card-header\">\r\n    <div class=\"\">\r\n\r\n      <b class=\"ml-2\">{{Question.title}}</b>\r\n      <span class=\"text-info ml-3 small\">{{Question.createDate}}</span>\r\n      <div class=\"float-right\">\r\n        <div ngbDropdown>\r\n          <span class=\"btn\" ngbDropdownToggle placement=\"bottom\" ngbTooltip=\"settings\">\r\n            <i class=\"material-icons small\">settings</i>\r\n          </span>\r\n          <div ngbDropdownMenu style=\"position: absolute;\">\r\n            <a class=\"dropdown-item\" href=\"#\">Update</a>\r\n            <a class=\"dropdown-item\" href=\"#\">Delete</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"ml-5\">\r\n        <span>{{Question.contentQuestion}}</span>\r\n      </div>\r\n      <div class=\"text-right mt-3 btn-comment\">\r\n        <span (click)=\"isCollapsed = !isCollapsed\" class=\"btn \">Comment<span> ({{Question.countsAnswer}})</span></span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <!--commet collapsed-->\r\n  <div class=\"card-body\" *ngIf=\"isCollapsed\">\r\n    <app-card-comment [questionID]=\"Question.questionId\"></app-card-comment>\r\n</div>"
 
 /***/ }),
 
@@ -1255,8 +1292,7 @@ module.exports = "<div class=\"card-questioner\">\r\n  <div class=\"card-header\
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardQuestionComponent", function() { return CardQuestionComponent; });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1267,22 +1303,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var CardQuestionComponent = /** @class */ (function () {
-    function CardQuestionComponent(http) {
-        this.http = http;
+    function CardQuestionComponent() {
         this.isSetting = false;
         this.isCollapsed = false;
     }
     CardQuestionComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('userQuestion'),
+        __metadata("design:type", Object)
+    ], CardQuestionComponent.prototype, "Question", void 0);
     CardQuestionComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-card-question',
             template: __webpack_require__(/*! ./card-question.component.html */ "./src/app/card-question/card-question.component.html"),
             styles: [__webpack_require__(/*! ./card-question.component.css */ "./src/app/card-question/card-question.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]])
+        __metadata("design:paramtypes", [])
     ], CardQuestionComponent);
     return CardQuestionComponent;
 }());
@@ -1411,7 +1449,7 @@ var NotFoundError = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".home-page{\r\n    height: 100%;\r\n}\r\n\r\n.main-left{\r\n    border: 1px solid rgba(0,0,0,.125);\r\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;\r\n}"
+module.exports = ".home-page{\r\n    height: 100%;\r\n}\r\n\r\n.main-left, .main-right{\r\n    border: 1px solid rgba(0,0,0,.125);\r\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;\r\n}"
 
 /***/ }),
 
@@ -1422,7 +1460,7 @@ module.exports = ".home-page{\r\n    height: 100%;\r\n}\r\n\r\n.main-left{\r\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row home-page\">\r\n    <div class=\"col-md-2 bg-light main-left\">\r\n        <app-user-box></app-user-box>\r\n    </div>\r\n    <div class=\"col-md-8 main-center\">\r\n        <app-menu></app-menu>\r\n\r\n        <div style=\"height: 82%\">\r\n            <div *ngIf=\"userRoles == 1; else answerPage\" style=\"height: 100%\">\r\n                <app-questioner></app-questioner>\r\n            </div>\r\n\r\n            <ng-template #answerPage>\r\n                <app-answer></app-answer>\r\n            </ng-template>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-md-2 main-right bg-warning\">\r\n\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n<!--nothing\r\n<h1>Home Page</h1>\r\n<p *ngIf=\"authService.isLoggedIn()\">\r\n  Welcome {{ authService.currentUser.sub }}\r\n</p>\r\n<ul>\r\n  <li *ngIf=\"authService.isLoggedIn() && (this.authService.currentUser.roles == adminRole)\"><a routerLink=\"/admin\">Admin</a></li>\r\n  <li *ngIf=\"!authService.isLoggedIn()\"><a routerLink=\"/login\">Login</a></li>\r\n  <li *ngIf=\"!authService.isLoggedIn()\"><a routerLink=\"/signup\">Signup</a></li>\r\n</ul>\r\n\r\n<button *ngIf=\"authService.isLoggedIn()\" (click)=\"authService.logout()\">Logout</button>-->"
+module.exports = "<div class=\"row home-page\">\r\n    <div class=\"col-md-2 bg-light main-left\">\r\n        <app-user-box></app-user-box>\r\n    </div>\r\n    <div class=\"col-md-8 main-center\">\r\n        <app-menu></app-menu>\r\n\r\n        <div style=\"height: 82%\">\r\n            <div *ngIf=\"userRoles == role ; else answerPage\" style=\"height: 100%\">\r\n                <app-questioner></app-questioner>\r\n            </div>\r\n\r\n            <ng-template #answerPage>\r\n                <app-answer></app-answer>\r\n            </ng-template>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-md-2 main-right\">\r\n\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n<!--nothing\r\n<h1>Home Page</h1>\r\n<p *ngIf=\"authService.isLoggedIn()\">\r\n  Welcome {{ authService.currentUser.sub }}\r\n</p>\r\n<ul>\r\n  <li *ngIf=\"authService.isLoggedIn() && (this.authService.currentUser.roles == adminRole)\"><a routerLink=\"/admin\">Admin</a></li>\r\n  <li *ngIf=\"!authService.isLoggedIn()\"><a routerLink=\"/login\">Login</a></li>\r\n  <li *ngIf=\"!authService.isLoggedIn()\"><a routerLink=\"/signup\">Signup</a></li>\r\n</ul>\r\n\r\n<button *ngIf=\"authService.isLoggedIn()\" (click)=\"authService.logout()\">Logout</button>-->"
 
 /***/ }),
 
@@ -1457,9 +1495,10 @@ var HomeComponent = /** @class */ (function () {
     function HomeComponent(authService, router) {
         this.authService = authService;
         this.router = router;
+        this.role = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].questioner;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.userRoles = 1;
+        this.userRoles = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].questioner;
         if (!this.authService.isLoggedIn())
             this.router.navigate(['/login']);
         if (this.authService.hasRole(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].admin))
@@ -1913,7 +1952,7 @@ module.exports = ".scroll-list-comment{\r\n    overflow-y: scroll; \r\n    heigh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mt-4\" style=\"height: 100%\">\r\n    <span class=\"btn btn-outline-warning nav-link\" (click)=\"CreatQuestion()\">New Question</span>\r\n    <ul class=\"navbar-nav scroll-list-comment\">\r\n        <li class=\"nav-item pb-3\">\r\n            <app-card-question></app-card-question>\r\n        </li>\r\n        <li class=\"nav-item pb-3\">\r\n            <app-card-question></app-card-question>\r\n        </li>\r\n        <li class=\"nav-item pb-3\">\r\n            <app-card-question></app-card-question>\r\n        </li>\r\n        <li class=\"nav-item pb-3\">\r\n            <app-card-question></app-card-question>\r\n        </li>\r\n        <li class=\"nav-item pb-3\">\r\n            <app-card-question></app-card-question>\r\n        </li>\r\n        <li class=\"nav-item pb-3\">\r\n            <app-card-question></app-card-question>\r\n        </li>\r\n    </ul>\r\n</div>"
+module.exports = "<div class=\"mt-4\" style=\"height: 100%\">\r\n    <span class=\"btn btn-outline-warning nav-link\" (click)=\"CreatQuestion()\">New Question</span>\r\n    <ul class=\"navbar-nav scroll-list-comment\">\r\n        <li class=\"nav-item pb-3\" *ngFor=\"let question of Questions\">\r\n            <app-card-question [userQuestion]=\"question\"></app-card-question>\r\n        </li>\r\n    </ul>\r\n</div>"
 
 /***/ }),
 
@@ -1927,9 +1966,11 @@ module.exports = "<div class=\"mt-4\" style=\"height: 100%\">\r\n    <span class
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuestionerComponent", function() { return QuestionerComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _make_question_make_question_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../make-question/make-question.component */ "./src/app/make-question/make-question.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _make_question_make_question_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../make-question/make-question.component */ "./src/app/make-question/make-question.component.ts");
+/* harmony import */ var _services_Question_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/Question.service */ "./src/app/services/Question.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1942,22 +1983,28 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var QuestionerComponent = /** @class */ (function () {
-    function QuestionerComponent(modalService) {
+    function QuestionerComponent(modalService, _http, question) {
         this.modalService = modalService;
+        this._http = _http;
+        this.question = question;
     }
     QuestionerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.question.getCustom('ListQuestionByUserId').subscribe(function (question) { return _this.Questions = question; });
     };
     QuestionerComponent.prototype.CreatQuestion = function () {
-        this.modalService.open(_make_question_make_question_component__WEBPACK_IMPORTED_MODULE_2__["MakeQuestionComponent"]);
+        this.modalService.open(_make_question_make_question_component__WEBPACK_IMPORTED_MODULE_3__["MakeQuestionComponent"]);
     };
     QuestionerComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-questioner',
             template: __webpack_require__(/*! ./questioner.component.html */ "./src/app/questioner/questioner.component.html"),
             styles: [__webpack_require__(/*! ./questioner.component.css */ "./src/app/questioner/questioner.component.css")]
         }),
-        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbModal"]])
+        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _services_Question_service__WEBPACK_IMPORTED_MODULE_4__["QuestionService"]])
     ], QuestionerComponent);
     return QuestionerComponent;
 }());
@@ -2059,13 +2106,125 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var CommentService = /** @class */ (function (_super) {
     __extends(CommentService, _super);
     function CommentService(http, spinner) {
-        return _super.call(this, 'Commentapi', http, spinner) || this;
+        return _super.call(this, 'Comment', http, spinner) || this;
     }
     CommentService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], ngx_spinner__WEBPACK_IMPORTED_MODULE_3__["NgxSpinnerService"]])
     ], CommentService);
     return CommentService;
+}(_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/Question.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/services/Question.service.ts ***!
+  \**********************************************/
+/*! exports provided: QuestionService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuestionService", function() { return QuestionService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data.service */ "./src/app/services/data.service.ts");
+/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var QuestionService = /** @class */ (function (_super) {
+    __extends(QuestionService, _super);
+    function QuestionService(http, spinner) {
+        return _super.call(this, 'Question', http, spinner) || this;
+    }
+    QuestionService.prototype.getCustom = function (action) {
+        return _super.prototype.get.call(this, action);
+    };
+    QuestionService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], ngx_spinner__WEBPACK_IMPORTED_MODULE_3__["NgxSpinnerService"]])
+    ], QuestionService);
+    return QuestionService;
+}(_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/User.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/User.service.ts ***!
+  \******************************************/
+/*! exports provided: UserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data.service */ "./src/app/services/data.service.ts");
+/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var UserService = /** @class */ (function (_super) {
+    __extends(UserService, _super);
+    function UserService(http, spinner) {
+        return _super.call(this, 'Dashboard', http, spinner) || this;
+    }
+    UserService.prototype.getCustom = function (action) {
+        return _super.prototype.get.call(this, action);
+    };
+    UserService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], ngx_spinner__WEBPACK_IMPORTED_MODULE_3__["NgxSpinnerService"]])
+    ], UserService);
+    return UserService;
 }(_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]));
 
 
@@ -2213,6 +2372,19 @@ var AuthService = /** @class */ (function () {
         }
         return false;
     };
+    AuthService.prototype.getRoleName = function () {
+        var roles = [];
+        var tmp = [];
+        if (this.currentUser != null)
+            roles = this.currentUser.roles;
+        if (roles != null) {
+            if (roles instanceof Array) {
+                return roles;
+            }
+            tmp.push(roles);
+            return tmp;
+        }
+    };
     AuthService.prototype.register = function (userRegistration) {
         var _this = this;
         this.spinner.show();
@@ -2318,13 +2490,7 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.delete = function (id) {
         return this.http.delete(this.baseUrl + '/' + this.url + '/' + id).
-            pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) { return response; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(
-        /*           (error:Response) => {
-                    if (error.status == 404)
-                      return throwError(new NotFoundError(error.json()));
-                    return throwError(new AppError(error));
-                  }) */
-        this.HandleError));
+            pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) { return response; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.HandleError));
     };
     DataService.prototype.HandleError = function (error) {
         var modelStateErrors = '';
@@ -2528,7 +2694,7 @@ module.exports = ".account img{\r\n    height: 60px;\r\n    width: 60px;\r\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"account text-center mt-4\">\r\n  <div class=\"form-group\">\r\n    <img src=\"https://via.placeholder.com/150/771796\" alt=\"\">\r\n    <p>Trần Dưỡng</p>\r\n  </div>\r\n  <div ngbDropdown class=\"form-group\">\r\n    <span class=\"btn\" id=\"dropdownBasic1\" ngbDropdownToggle>\r\n      <span>{{Role}}</span>\r\n    </span>\r\n    <div ngbDropdownMenu style=\"position: absolute\">\r\n      <button class=\"dropdown-item btn\" *ngFor=\"let item of RolesAccount\" (click)=\"changeRole(item)\">{{item}}</button>\r\n    </div>\r\n  </div>\r\n  <ul>\r\n    <li *ngIf=\"authService.isLoggedIn() && (this.authService.hasRole(adminRole))\"><a routerLink=\"/admin\">Admin</a></li>\r\n  </ul>\r\n  <div class=\"form-group form-inline justify-content-center\">\r\n    <button class=\"btn\" (click)=\"authService.logout()\">\r\n      Sign Out\r\n    </button>\r\n    <i class=\"material-icons\">\r\n      exit_to_app\r\n    </i>\r\n  </div>\r\n</form>"
+module.exports = "<form class=\"account text-center mt-4\">\r\n  <div class=\"form-group\">\r\n    \r\n    <span *ngIf=\"Account.avatar == null; else imageAccount\">\r\n      <img class=\"img-account\" src=\"\" />\r\n    </span>\r\n    <ng-template #imageAccount>\r\n      <img [src]=\"Account.avatar\" alt=\"\">\r\n    </ng-template>\r\n\r\n    <p>{{Account.fullname}}</p>\r\n  </div>\r\n  <div ngbDropdown class=\"form-group\">\r\n    <span class=\"btn\" id=\"dropdownBasic1\" ngbDropdownToggle>\r\n      <span>{{Role}}</span>\r\n    </span>\r\n    <div ngbDropdownMenu style=\"position: absolute\">\r\n      <button class=\"dropdown-item btn\" *ngFor=\"let item of RolesAccount\" (click)=\"changeRole(item)\">{{item}}</button>\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group form-inline justify-content-center\">\r\n    <button class=\"btn\" (click)=\"_authService.logout()\">\r\n      Log Out\r\n    </button>\r\n    <i class=\"material-icons\">\r\n      exit_to_app\r\n    </i>\r\n  </div>\r\n</form>"
 
 /***/ }),
 
@@ -2545,6 +2711,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _services_User_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/User.service */ "./src/app/services/User.service.ts");
+/* harmony import */ var _card_comment_card_comment_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../card-comment/card-comment.component */ "./src/app/card-comment/card-comment.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2557,22 +2725,26 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var UserBoxComponent = /** @class */ (function () {
-    function UserBoxComponent(homeComponent, authService) {
-        this.homeComponent = homeComponent;
-        this.authService = authService;
-        this.RolesAccount = ["Questioner", "Answer"];
+    function UserBoxComponent(_homeComponent, _Account, _authService) {
+        this._homeComponent = _homeComponent;
+        this._Account = _Account;
+        this._authService = _authService;
+        this.Account = {};
+        this.RolesAccount = [];
     }
     UserBoxComponent.prototype.ngOnInit = function () {
-        this.Role = this.RolesAccount[0];
+        var _this = this;
+        this.Role = "Questioner";
+        this._Account.getCustom('Account').subscribe(function (result) { return _this.Account = result; });
+        this.RolesAccount = this._authService.getRoleName();
+        var ngAtive = _card_comment_card_comment_component__WEBPACK_IMPORTED_MODULE_4__["CardCommentComponent"];
     };
     UserBoxComponent.prototype.changeRole = function (item) {
+        this._homeComponent.userRoles = item;
         this.Role = item;
-        if (item == this.RolesAccount[1])
-            item = 2;
-        else
-            item = 1;
-        this.homeComponent.userRoles = item;
     };
     UserBoxComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2580,7 +2752,7 @@ var UserBoxComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./user-box.component.html */ "./src/app/user-box/user-box.component.html"),
             styles: [__webpack_require__(/*! ./user-box.component.css */ "./src/app/user-box/user-box.component.css")]
         }),
-        __metadata("design:paramtypes", [_home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"], _services_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"]])
+        __metadata("design:paramtypes", [_home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"], _services_User_service__WEBPACK_IMPORTED_MODULE_3__["UserService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"]])
     ], UserBoxComponent);
     return UserBoxComponent;
 }());
@@ -2605,6 +2777,8 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     admin: "Admin",
+    questioner: "Questioner",
+    answer: "Answer",
     baseUrl: 'http://localhost:61759/api'
 };
 /*
@@ -2651,7 +2825,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\hntlk\Desktop\QnA\QnS2\ClientApp\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! E:\QnA\QnS2\ClientApp\src\main.ts */"./src/main.ts");
 
 
 /***/ })

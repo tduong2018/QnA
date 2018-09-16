@@ -20,3 +20,14 @@ C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.Assembl
 C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfo.cs
 C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.dll
 C:\Users\lopch\OneDrive\Máy tính\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.pdb
+E:\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.deps.json
+E:\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.runtimeconfig.json
+E:\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.runtimeconfig.dev.json
+E:\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.dll
+E:\QnA\QnS2\bin\Debug\netcoreapp2.0\QnS2.pdb
+E:\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.csprojAssemblyReference.cache
+E:\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.csproj.CoreCompileInputs.cache
+E:\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfoInputs.cache
+E:\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.AssemblyInfo.cs
+E:\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.dll
+E:\QnA\QnS2\obj\Debug\netcoreapp2.0\QnS2.pdb
